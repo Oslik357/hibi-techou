@@ -130,12 +130,12 @@ input,select{width:100%;box-sizing:border-box;background:var(--bg);border:1px so
 .mini:disabled{opacity:.4;cursor:default}
 .paper{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:6px 14px 10px}
 .paper:focus-within{border-color:var(--accent)}
-#dText,#mBody{display:block;width:100%;box-sizing:border-box;min-height:336px;border:0;border-radius:0;padding:0;resize:vertical;font-family:var(--f-body);font-size:16px;line-height:28px;color:var(--ink);background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--line) 27px 28px);background-attachment:local}
-#dText:focus-visible,#mBody:focus-visible,.paper input.mtitle:focus-visible{outline:none}
+#dText,#mBody,#qAns{display:block;width:100%;box-sizing:border-box;min-height:336px;border:0;border-radius:0;padding:0;resize:vertical;font-family:var(--f-body);font-size:16px;line-height:28px;color:var(--ink);background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--line) 27px 28px);background-attachment:local}
+#dText:focus-visible,#mBody:focus-visible,#qAns:focus-visible,.paper input.mtitle:focus-visible{outline:none}
 .paper input.mtitle{border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;font-family:var(--f-display);font-size:20px;font-weight:700;padding:6px 0;margin-bottom:6px;min-height:44px}
 .dprev .mt{font-size:15px;color:var(--ink)}
 .dprev .mu{color:var(--muted);font-weight:400}
-#dText::placeholder,#mBody::placeholder,.mtitle::placeholder{color:var(--muted)}
+#dText::placeholder,#mBody::placeholder,#qAns::placeholder,.mtitle::placeholder{color:var(--muted)}
 .dfoot{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
 .dprev{width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;cursor:pointer;display:flex;flex-direction:column;gap:2px}
 .dprev b{font-size:12px;color:var(--accent)}
@@ -179,6 +179,33 @@ mark{background:var(--warn-soft);color:var(--ink);border-radius:2px;padding:0 1p
 .card .cex{margin:0;font-size:14px;color:var(--muted);text-align:center;overflow-wrap:anywhere}
 .card .cbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:6px}
 .card .cbtns .btn{min-width:120px}
+.vdef{margin:2px 0 0;font-size:14px;overflow-wrap:anywhere}
+.selbar{position:fixed;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:7;max-width:620px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:12px;padding:8px 8px 8px 14px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.selbar span{flex:1;min-width:0;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.selbar .btn{background:var(--ok);color:#fff;min-height:36px;padding:6px 14px}
+.selbar .x{background:transparent;border:0;color:var(--bg);font-size:20px;cursor:pointer;padding:0 6px;line-height:1}
+.ctext,.issues li,.dprev span{-webkit-user-select:text;user-select:text}
+#qAns{min-height:196px}
+.qa{margin-top:6px}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.qmeta{margin:0;display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.lvl{border:1px solid var(--accent);color:var(--accent);border-radius:4px;padding:0 6px;font-size:11px;font-weight:700}
+.qtext{margin:0;font-family:var(--f-display);font-size:19px;line-height:1.5;font-weight:700;overflow-wrap:anywhere;-webkit-user-select:text;user-select:text}
+.qprac{margin:0;font-size:13px;color:var(--muted)}
+.qprac b{color:var(--ink);font-weight:500;background:var(--ok-soft);border-radius:4px;padding:0 5px;margin-right:4px;display:inline-block;margin-top:3px}
+.qcard details summary{cursor:pointer;font-size:13px;color:var(--accent);font-weight:700;padding:4px 0}
+.qcard details .ctext{margin-top:6px}
+.qgram{margin:0;font-size:13px;font-weight:700;color:var(--accent)}
+details.drill{border-top:1px solid var(--line);padding-top:6px}
+details.drill ol{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:10px}
+details.drill li p{margin:0;overflow-wrap:anywhere}
+.drow{display:flex;gap:6px;margin-top:4px}
+.drow input{flex:1;min-width:0;min-height:36px;padding:6px 10px}
+.dres{margin:3px 0 0;font-size:13px;color:var(--muted)}
+.dres.ok{color:var(--ok);font-weight:700}
+.dres.ng{color:var(--danger)}
+.lvrow{display:flex;flex-direction:column;gap:3px}
+.lvrow small{color:var(--muted);font-size:12px}
 details.vadd{margin:10px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
 details.vadd summary{cursor:pointer;font-size:13px;color:var(--accent);font-weight:700}
 details.vadd .form{border:0;padding:10px 0 0;background:transparent}
@@ -203,6 +230,7 @@ details.vadd .form{border:0;padding:10px 0 0;background:transparent}
 </div>
 <datalist id="cats"></datalist>
 <div class="toast" id="toast" hidden></div>
+<div class="selbar" id="selBar" hidden><span id="selTxt"></span><button class="btn" id="selAdd">単語帳へ</button><button class="x" id="selClose" aria-label="閉じる">×</button></div>
 
 <nav class="tabs" aria-label="画面の切り替え"><div class="in">
   <button class="tab" data-tab="today"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>今日</button>
@@ -233,10 +261,10 @@ const DEFAULT_CATS=['IPPジャパン','トーション','MITIA','個人'];
 const LANG={ru:'ロシア語',es:'スペイン語',en:'英語'}, LANGS=['ru','es','en'];
 const genId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const LK='hibi-techou-v1';
-const COLS=['tasks','habits','events','diary','memos','checks','vocab'];
+const COLS=['tasks','habits','events','diary','memos','checks','vocab','prompts','profile'];
 const VIEWS=['today','tasks','habits','schedule','diary','memo','learn','search'];
 const S={tab:'today',editTask:null,editEvent:null,filter:'open',cat:'',showPast:false,day:today(),dDate:today(),q:'',sKind:'all',memoId:null,
-  lang:null,ai:null,lLang:'all',card:null};
+  lang:null,ai:null,lLang:'all',card:null,qLang:null,qGen:false,qErr:false};
 
 function toast(msg,ms){const t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,ms||2600)}
 const use=name=>{try{return (window.claude&&window.claude.use)?window.claude.use(name).catch(()=>null):Promise.resolve(null)}catch(e){return Promise.resolve(null)}};
@@ -250,7 +278,7 @@ async function idbGet(k){const db=await idb();return new Promise((res,rej)=>{con
 async function idbSet(k,v){const db=await idb();return new Promise((res,rej)=>{const t=db.transaction('kv','readwrite');t.objectStore('kv').put(v,k);t.oncomplete=()=>res();t.onerror=()=>rej(t.error)})}
 
 /* ---------- store: Claude cloud (synced) or this device only ---------- */
-const emptyData=()=>({tasks:[],habits:[],events:[],diary:[],memos:[],checks:[],vocab:[],deleted:{}});
+const emptyData=()=>({tasks:[],habits:[],events:[],diary:[],memos:[],checks:[],vocab:[],prompts:[],profile:[],deleted:{}});
 const okId=id=>typeof id==='string'&&/^[A-Za-z0-9_\-.~:@+]{1,200}$/.test(id)&&id!=='.'&&id!=='..';
 const Store={mode:'loading',data:emptyData(),meta:{lastExport:0},base:null,delRef:null,
   async init(){
@@ -375,10 +403,13 @@ function evItem(e,withActs){
   ${withActs?`<div class="acts"><a class="mini" href="${esc(gcal(e))}" target="_blank" rel="noopener">カレンダーに追加</a><button class="mini" data-act="editEvent" data-id="${esc(e.id)}">編集</button><button class="mini" data-act="del" data-col="events" data-id="${esc(e.id)}">削除</button></div>`:''}</li>`}
 const dots=b=>{b=Math.max(1,Math.min(6,b||1));return `<span class="dots" title="習熟度 ${b}/6">${'●'.repeat(b)}<i>${'●'.repeat(6-b)}</i></span>`};
 function vocabItem(v,T){const h=T?(x=>hl(x,T)):esc;
-  return `<li class="item"><div class="body"><p class="ttl"><span class="lang">${LANG[v.lang]||''}</span> ${h(v.word)}<span class="vmean">${h(v.meaning)}</span></p>
+  const syn=(v.synonyms||[]).join(', ');
+  return `<li class="item"><div class="body"><p class="ttl"><span class="lang">${LANG[v.lang]||''}</span> ${h(v.word)}</p>
+  ${v.meaning?`<p class="vdef">${h(v.meaning)}</p>`:''}
+  ${syn?`<p class="meta">${SYN[v.lang]||'同意語'}: ${h(syn)}</p>`:''}
   ${v.example?`<p class="meta">${h(v.example)}${v.exampleJa?' ／ '+h(v.exampleJa):''}</p>`:''}
   <p class="meta">${dots(v.box)}${v.note?`<span>${h(v.note)}</span>`:''}${v.source&&v.source.date?`<span>${fmtShort(v.source.date)}の日記から</span>`:''}</p></div>
-  <div class="acts"><button class="mini" data-act="del" data-col="vocab" data-id="${esc(v.id)}">削除</button></div></li>`}
+  <div class="acts">${!v.meaning&&SAMPLE?`<button class="mini" data-act="vExplain" data-id="${esc(v.id)}">説明を付ける</button>`:''}<button class="mini" data-act="del" data-col="vocab" data-id="${esc(v.id)}">削除</button></div></li>`}
 
 /* ---------- view shells (forms stay put while lists refresh) ---------- */
 const shells={
@@ -424,6 +455,24 @@ const shells={
   <section id="mEdit" hidden><div class="dnav"><button class="mini" data-act="mBack">‹ 一覧へ</button><span class="found" id="mSave"></span><button class="mini" id="mDel" data-act="del" data-col="memos">削除</button></div>
   <div class="paper"><label class="sr" for="mTitle">タイトル</label><input id="mTitle" class="mtitle" placeholder="タイトル" autocomplete="off"><label class="sr" for="mBody">本文</label><textarea id="mBody" placeholder="アイデア、覚えておきたいこと、用語の控えなど、自由に書いてください。自動で保存されます。"></textarea></div></section>`,
  diary:()=>`<section><div class="dnav"><button class="mini" data-act="dPrev">‹ 前の日</button><h2 id="dHead"></h2><button class="mini" id="dNext" data-act="dNext">次の日 ›</button></div>
+  <div class="qa" id="qa"><h2>今日の作文 <small>各言語1問 ・ 短くても長くても</small></h2>
+   <div class="chips" id="qLang" style="margin-top:0"></div>
+   <p class="found" id="qMsg0"></p>
+   <div id="qWrap" hidden>
+    <div class="qcard" id="qCard" data-lang="ru">
+     <p class="qmeta"><span class="lang" id="qBadge"></span><span class="lvl" id="qLvl"></span><span id="qTheme"></span></p>
+     <p class="qtext" id="qText"></p>
+     <p class="qgram" id="qGram"></p>
+     <p class="qprac" id="qPrac"></p>
+     <details id="qSampleBox"><summary>サンプルの答えを読む（読解・まねて書く手本）</summary><p class="ctext" id="qSample"></p><p class="found" style="margin-top:6px">単語や表現を長押しで選ぶと単語帳に送れます。</p></details>
+     <div id="qDrill"></div>
+    </div>
+    <div class="paper"><label class="sr" for="qAns">答え</label><textarea id="qAns"></textarea></div>
+    <div class="dfoot"><span id="qSave"></span><span id="qCount"></span></div>
+    <div class="aiacts"><button class="btn" id="qRun" data-act="qRun" hidden>AIで添削する</button><button class="btn ghost" id="qStop" data-act="aiStop" hidden>中止</button><span class="found" id="qMsg"></span></div>
+    <div id="qOut"></div>
+   </div></div>
+  <h2 style="margin-top:26px">自由日記 <small>日本語でも、どの言語でも</small></h2>
   <div class="paper"><label class="sr" for="dText">日記</label><textarea id="dText" placeholder="今日の出来事、会った人、考えたこと、うれしかったことなど、自由に書いてください。書いた内容は自動で保存されます。"></textarea></div>
   <div class="dfoot"><span id="dSave"></span><span id="dCount"></span></div></section>
   <section class="ai"><h2>語学の添削 <small>ロシア語・スペイン語・英語</small></h2>
@@ -448,6 +497,7 @@ const shells={
      <div class="formacts"><button class="btn">追加</button></div>
     </form></details>
    <ul class="list" id="lVocab"></ul></section>
+  <section><h2>作文のレベル <small>正確に書けるようになると自動で上がります</small></h2><div class="grid" id="lvBox"></div></section>
   <section><h2>添削の記録 <small>タップでその日の日記と添削を開く</small></h2><ul class="list" id="lChecks"></ul></section>`
 };
 
@@ -456,7 +506,7 @@ function checkHtml(c){
   const V=new Set(Store.data.vocab.map(v=>vKey(v.lang,v.word)));
   const issues=c.issues||[], words=c.words||[];
   const notIn=words.filter(w=>!V.has(vKey(c.lang,w.word))).length;
-  return `<div class="chk">
+  return `<div class="chk" data-lang="${esc(c.lang)}">
    ${c.comment?`<p class="ccom">${esc(c.comment)}</p>`:''}
    <h4>訂正後</h4><p class="ctext">${esc(c.corrected)}</p>
    ${c.natural&&c.natural.trim()&&c.natural.trim()!==String(c.corrected||'').trim()?`<h4>より自然な言い方</h4><p class="ctext">${esc(c.natural)}</p>`:''}
@@ -465,7 +515,7 @@ function checkHtml(c){
    ${words.length?`<h4>覚えたい単語</h4><ul class="list">${words.map((w,k)=>`<li class="item"><div class="body"><p class="ttl">${esc(w.word)}<span class="vmean">${esc(w.meaning)}</span></p>${w.example?`<p class="meta">${esc(w.example)}${w.exampleJa?' ／ '+esc(w.exampleJa):''}</p>`:''}${w.note?`<p class="meta">${esc(w.note)}</p>`:''}</div>
      <div class="acts">${V.has(vKey(c.lang,w.word))?'<span class="found">登録済み</span>':`<button class="mini" data-act="vAdd" data-id="${esc(c.id)}" data-k="${k}">＋単語帳</button>`}</div></li>`).join('')}</ul>
      ${notIn>1?`<button class="linkbtn" data-act="vAddAll" data-id="${esc(c.id)}">まとめて単語帳に追加（${notIn}語）</button>`:''}`:''}
-   <p class="found" style="margin-top:6px">${LANG[c.lang]||''} ・ 添削 ${fmtStamp(c.created||c.updated)}</p></div>`}
+   <p class="found" style="margin-top:6px">${LANG[c.lang]||''} ・ 添削 ${fmtStamp(c.created||c.updated)} ・ 単語や表現を長押しで選ぶと「単語帳へ」が出ます</p></div>`}
 
 /* ---------- list rendering ---------- */
 function refresh(){
@@ -483,7 +533,7 @@ function refresh(){
     const ev=D.events.filter(e=>e.date===td).sort(sortEv);
     const tk=open.filter(t=>(t.due&&t.due<=td)||(!t.due&&t.priority==='high')).sort(sortTasks);
     const doneH=habits.filter(h=>h.log&&h.log[td]).length, dueV=D.vocab.filter(isDue).length;
-    $('#sum').innerHTML=`<span>予定 <b>${ev.length}</b> 件</span><span>やること <b>${tk.length}</b> 件</span><span>習慣 <b>${doneH}</b> / ${habits.length}</span>${dueV?`<span>単語の復習 <b>${dueV}</b> 語</span>`:''}${overdue?`<span style="color:var(--danger)">期限切れ <b style="color:var(--danger)">${overdue}</b> 件</span>`:''}`;
+    $('#sum').innerHTML=`<span>予定 <b>${ev.length}</b> 件</span><span>やること <b>${tk.length}</b> 件</span><span>習慣 <b>${doneH}</b> / ${habits.length}</span>${(()=>{const n=LANGS.filter(l=>{const p=getPrompt(td,l);return p&&p.answer&&p.answer.trim()}).length;return `<span>今日の作文 <b>${n}</b> / 3</span>`})()}${dueV?`<span>単語の復習 <b>${dueV}</b> 語</span>`:''}${overdue?`<span style="color:var(--danger)">期限切れ <b style="color:var(--danger)">${overdue}</b> 件</span>`:''}`;
     $('#lEv').innerHTML=loading?'':ev.length?ev.map(e=>evItem(e,false)).join(''):empty('今日の予定はありません。「予定」から追加できます。');
     $('#lTk').innerHTML=loading?'':tk.length?tk.map(taskItem).join(''):empty('急ぎのタスクはありません。上の欄に書くと今日まで期限のタスクになります。');
     $('#lHb').innerHTML=loading?'':habits.length?habits.map(habitToday).join(''):empty('まだ習慣がありません。「習慣」から追加すると、ここで毎日チェックできます。');
@@ -494,15 +544,17 @@ function refresh(){
   if(S.tab==='diary'){
     const ta=$('#dText');
     if(ta&&!dDirty&&(document.activeElement!==ta||!ta.value)){const e=D.diary.find(x=>x.id===S.dDate),v=e?e.text||'':''; if(ta.value!==v){ta.value=v;dCount()}}
-    const L=D.diary.filter(x=>x.text).sort((a,b)=>b.id.localeCompare(a.id)).slice(0,60);
+    const dmap={}; D.diary.filter(x=>x.text).forEach(x=>dmap[x.id]={id:x.id,text:x.text});
+    D.prompts.filter(p=>p.answer&&p.answer.trim()).forEach(p=>{const o=dmap[p.date]||(dmap[p.date]={id:p.date,text:'',n:0}); o.n=(o.n||0)+1; if(!o.text) o.text=p.answer});
+    const L=Object.values(dmap).sort((a,b)=>b.id.localeCompare(a.id)).slice(0,60);
     $('#lDiary').innerHTML=loading?'':L.length?L.map(e=>{const n=D.checks.filter(c=>c.date===e.id).length;
-      return `<li><button class="dprev ${e.id===S.dDate?'cur':''}" data-act="dOpen" data-d="${esc(e.id)}"><b>${fmtLong(e.id)}${n?` ・ 添削${n}件`:''}</b><span>${esc(snip(e.text,80))}</span></button></li>`}).join('')
+      return `<li><button class="dprev ${e.id===S.dDate?'cur':''}" data-act="dOpen" data-d="${esc(e.id)}"><b>${fmtLong(e.id)}${e.n?` ・ 作文${e.n}`:''}${n?` ・ 添削${n}件`:''}</b><span>${esc(snip(e.text,80))}</span></button></li>`}).join('')
       :empty('書いた日記がここに新しい順に並びます。');
-    renderAI();
+    renderAI(); renderQA();
   }
   if(S.tab==='learn') renderLearn();
   if(S.tab==='search'){
-    const T=terms(),kinds=[['all','すべて'],['tasks','タスク'],['events','予定'],['diary','日記'],['memo','メモ'],['vocab','単語'],['checks','添削'],['habits','習慣']];
+    const T=terms(),kinds=[['all','すべて'],['tasks','タスク'],['events','予定'],['diary','日記'],['memo','メモ'],['vocab','単語'],['prompts','作文'],['checks','添削'],['habits','習慣']];
     $('#sChips').innerHTML=kinds.map(([k,l])=>`<button class="chip" data-act="sKind" data-v="${k}" aria-pressed="${S.sKind===k}">${l}</button>`).join('');
     const out=$('#sRes');
     if(!T.length) out.innerHTML=empty('タスク・予定・日記・メモ・単語帳・添削・習慣の中から探します。スペースで区切って複数の言葉を入れると、すべてを含むものに絞り込みます。');
@@ -516,10 +568,12 @@ function refresh(){
         if(L.length) g.push(['日記',L.map(e=>`<li><button class="dprev" data-act="dOpen" data-d="${esc(e.id)}"><b>${fmtLong(e.id)}</b><span>${hl(around(e.text,T,110),T)}</span></button></li>`)])}
       if(want('memo')){const L=D.memos.filter(m=>hit([m.title,m.body],T)).sort((a,b)=>(b.updated||0)-(a.updated||0));
         if(L.length) g.push(['メモ',L.map(m=>`<li><button class="dprev" data-act="mOpen" data-id="${esc(m.id)}"><b class="mt">${m.title&&m.title.trim()?hl(m.title,T):'（無題）'}</b>${m.body?`<span>${hl(around(m.body,T,110),T)}</span>`:''}</button></li>`)])}
-      if(want('vocab')){const L=D.vocab.filter(v=>hit([v.word,v.meaning,v.example,v.exampleJa,v.note],T)).sort((a,b)=>(b.created||0)-(a.created||0));
+      if(want('vocab')){const L=D.vocab.filter(v=>hit([v.word,v.meaning,(v.synonyms||[]).join(' '),v.example,v.exampleJa,v.note],T)).sort((a,b)=>(b.created||0)-(a.created||0));
         if(L.length) g.push(['単語',L.map(v=>vocabItem(v,T))])}
       if(want('checks')){const L=D.checks.filter(c=>hit([c.corrected,c.natural,c.comment,...(c.issues||[]).flatMap(i=>[i.wrong,i.right,i.type,i.explanation])],T)).sort((a,b)=>(b.created||0)-(a.created||0));
         if(L.length) g.push(['添削',L.map(c=>`<li><button class="dprev" data-act="chkOpen" data-id="${esc(c.id)}"><b>${c.date?fmtLong(c.date):''} ・ ${LANG[c.lang]||''}</b><span>${hl(around([c.corrected,...(c.issues||[]).map(i=>i.wrong+' → '+i.right+' '+(i.explanation||''))].join(' '),T,110),T)}</span></button></li>`)])}
+      if(want('prompts')){const L=D.prompts.filter(p=>hit([p.question,p.answer,p.sample,(p.practice||[]).join(' ')],T)).sort((a,b)=>b.date.localeCompare(a.date));
+        if(L.length) g.push(['作文',L.map(p=>`<li><button class="dprev" data-act="qOpen" data-id="${esc(p.id)}"><b>${fmtLong(p.date)} ・ ${LANG[p.lang]||''}</b><span>${hl(p.question,T)}</span>${p.answer?`<span class="meta">${hl(around(p.answer,T,90),T)}</span>`:''}</button></li>`)])}
       if(want('habits')){const L=D.habits.filter(h=>hit([h.name],T));
         if(L.length) g.push(['習慣',L.map(h=>`<li class="item"><div class="body"><p class="ttl">${hl(h.name,T)}</p><p class="meta">${streak(h.log)}日連続</p></div><div class="acts"><button class="mini" data-act="openHabits">開く</button></div></li>`)])}
       const n=g.reduce((s,x)=>s+x[1].length,0);
@@ -568,68 +622,380 @@ function refresh(){
 
 /* ---------- diary: AI check panel ---------- */
 let SAMPLE; // undefined = still checking, null = not available here
-use('sample').then(s=>{SAMPLE=s||null; if(S.tab==='diary') renderAI()});
+use('sample').then(s=>{SAMPLE=s||null; if(S.tab==='diary'){renderAI();renderQA()}});
 function curLang(){ if(S.lang) return S.lang; const ta=$('#dText'); return detectLang(ta?ta.value:'')||'ru' }
 function renderAI(){
   const box=$('#aiOut'); if(!box) return;
-  const lang=curLang(), running=S.ai&&S.ai.date===S.dDate;
+  const lang=curLang(), running=S.ai&&!S.ai.pid&&S.ai.date===S.dDate;
   $('#aiLang').innerHTML=LANGS.map(l=>`<button class="chip" data-act="aiLang" data-v="${l}" aria-pressed="${lang===l}">${LANG[l]}</button>`).join('');
   const run=$('#aiRun'), stop=$('#aiStop'), msg=$('#aiMsg');
   run.hidden=!SAMPLE||!!running; stop.hidden=!running; run.disabled=!!S.ai;
   msg.textContent=running?'AIが添削しています…（数十秒かかることがあります）':SAMPLE===null?'AI添削は Claude 版で使えます。ここでは添削結果の確認と単語の練習ができます。':SAMPLE===undefined?'':'';
   if(running){ box.innerHTML=''; return }
-  const list=Store.data.checks.filter(c=>c.date===S.dDate&&c.lang===lang).sort((a,b)=>(b.created||0)-(a.created||0));
-  const others=Store.data.checks.filter(c=>c.date===S.dDate&&c.lang!==lang);
+  const list=Store.data.checks.filter(c=>!c.pid&&c.date===S.dDate&&c.lang===lang).sort((a,b)=>(b.created||0)-(a.created||0));
+  const others=Store.data.checks.filter(c=>!c.pid&&c.date===S.dDate&&c.lang!==lang);
   box.innerHTML=list.length?checkHtml(list[0])+(list.length>1?`<p class="found" style="margin-top:8px">この日の${LANG[lang]}の添削は${list.length}回あります（最新を表示）。すべて「語学」タブとExcelに残っています。</p>`:'')
     :(others.length?`<p class="found" style="margin-top:8px">この日は${[...new Set(others.map(c=>LANG[c.lang]))].join('・')}の添削があります。上の言語を切り替えると表示されます。</p>`:'');
 }
-const TYPES={ru:'格変化, 動詞のアスペクト, 動詞の活用, 性・数の一致, 前置詞, 語順, 綴り, 語彙の選択, 句読点, その他',
-  es:'動詞の活用, 時制, 接続法, ser/estar, 冠詞, 性・数の一致, 前置詞, 語順, 綴り・アクセント, 語彙の選択, その他',
-  en:'時制, 冠詞, 前置詞, 主語と動詞の一致, 単数・複数, 語順, 綴り, 語彙の選択, 句読点, その他'};
-function aiPrompt(lang,text){const L=LANG[lang];
-  return `あなたは、日本語を母語とする学習者を指導する${L}の先生です。以下は学習者が${L}で書いた日記です。日本語など他の言語の部分が混ざっていることがあります。
+const TYPES={ru:'Падеж, Вид глагола, Спряжение, Согласование, Управление, Предлог, Порядок слов, Лексическая сочетаемость, Стилистика, Орфография, Пунктуация, Другое',
+  es:'Conjugación, Tiempos verbales, Subjuntivo, Ser/Estar, Artículos, Concordancia, Preposiciones, Orden de palabras, Ortografía y acentos, Léxico, Puntuación, Otro',
+  en:'Tense, Articles, Prepositions, Subject-verb agreement, Singular/Plural, Word order, Spelling, Word choice, Collocation, Punctuation, Other'};
+const SYN={ru:'Синонимы',es:'Sinónimos',en:'Synonyms'};
+function aiPrompt(lang,text,q){
+  const qline=!q?'':lang==='ru'?`Это ответ на вопрос: «${q}». Исправляй только ответ.\n\n`:lang==='es'?`Es la respuesta a la pregunta: «${q}». Corrige solo la respuesta.\n\n`:`This is an answer to the question: "${q}". Correct only the answer.\n\n`;
+  const body=text.slice(0,6000);
+  if(lang==='ru') return `Ты — опытный редактор и преподаватель русского языка. Автор дневника владеет русским на уровне C2, поэтому не объясняй элементарное: ищи и неочевидные ошибки — управление, видовые пары, сочетаемость, кальки, порядок слов, пунктуацию, стилистические неточности и неестественные обороты.
+Ниже запись из дневника. В ней могут встречаться фрагменты на других языках (например, на японском) — их не исправляй и в ответ не включай.
 
-${L}で書かれた部分だけを添削してください。
-- 文法・語法・綴り・句読点の誤りをすべて直し、内容と、くだけた日記の調子はできるだけ保ってください。
-- 説明・講評・意味は、すべて日本語で簡潔に書いてください。
-${lang==='ru'?'- 単語（words）の見出し語には強勢記号を付けてください（例: молоко́）。訂正文には付けないでください。\n':''}${lang==='es'?'- 名詞の見出し語には冠詞を付けて性がわかるようにしてください（例: la mesa）。\n':''}
-次の形のJSONだけを返してください。JSON以外の文章は書かないでください。
-{"corrected":"${L}の部分を訂正した全文（他言語の部分は含めない）","natural":"ネイティブならこう書くという、より自然な書き直し（訂正後と同じなら空文字）","comment":"全体への短い講評。日本語で1〜2文。よかった点にも触れる","issues":[{"wrong":"誤っていた語句（原文のまま）","right":"正しい語句","type":"分類（${TYPES[lang]} のどれか）","explanation":"なぜ違うのか、関係する規則を日本語で1〜2文"}],"words":[{"word":"見出し語（辞書形）","meaning":"日本語の意味","example":"その語を使った短い${L}の例文","exampleJa":"例文の和訳","note":"性・活用・格支配などの短い覚え書き（なければ空文字）"}]}
+Требования:
+- Исправь все ошибки, сохраняя авторский голос и непринуждённый стиль дневника.
+- Все объяснения и общий отзыв пиши по-русски, кратко и точно, со ссылкой на правило или норму.
+- Ударения нигде не ставь.
 
-issues は、誤りがなければ空の配列にしてください。words には、この日記で間違えた語、訂正で使った語、覚えると役立つ語を3〜8個選んでください。
+Верни только JSON такого вида, без какого-либо другого текста:
+{"corrected":"исправленный русский текст целиком","natural":"вариант, как написал бы образованный носитель языка (пустая строка, если совпадает с исправленным)","comment":"краткий общий отзыв в 1–2 предложениях, отметь и удачное","issues":[{"wrong":"ошибочный фрагмент дословно","right":"правильный вариант","type":"одно из: ${TYPES.ru}","explanation":"почему так, со ссылкой на правило, 1–2 предложения"}]}
 
-日記:
+Если ошибок нет, issues — пустой массив.
+
+${qline}Запись:
 """
-${text.slice(0,6000)}
+${body}
+"""`;
+  if(lang==='es') return `Eres un profesor de español con experiencia. La autora de este diario tiene un nivel B2 de español: corrige todos los errores y señala también las expresiones poco naturales, explicando cada punto con claridad.
+El diario puede contener fragmentos en otros idiomas (por ejemplo, en japonés): no los corrijas ni los incluyas en la respuesta.
+
+Requisitos:
+- Corrige todos los errores de gramática, uso, ortografía, acentos y puntuación, manteniendo el contenido y el tono informal del diario.
+- Escribe todas las explicaciones y el comentario en español, de forma breve y clara, mencionando la regla correspondiente.
+
+Devuelve solo un JSON con esta forma, sin ningún otro texto:
+{"corrected":"el texto en español corregido completo","natural":"cómo lo escribiría un hablante nativo de forma más natural (cadena vacía si es igual al corregido)","comment":"comentario general breve, 1–2 frases, menciona también lo que está bien","issues":[{"wrong":"fragmento incorrecto tal como aparece","right":"forma correcta","type":"una de: ${TYPES.es}","explanation":"por qué, con la regla, en 1–2 frases"}]}
+
+Si no hay errores, issues es un array vacío.
+
+${qline}Diario:
+"""
+${body}
+"""`;
+  return `You are an experienced English teacher. The writer of this diary is at B2 level: correct every error, point out phrasing that sounds unnatural, and explain each point clearly.
+The diary may contain passages in other languages (for example Japanese): do not correct them and do not include them in your answer.
+
+Requirements:
+- Correct all errors in grammar, usage, spelling and punctuation, keeping the content and the casual tone of the diary.
+- Write every explanation and the comment in English, briefly and clearly, naming the rule involved.
+
+Return only JSON in this shape, with no other text:
+{"corrected":"the full corrected English text","natural":"how a native speaker would write it more naturally (empty string if the same as corrected)","comment":"a short overall comment in 1–2 sentences, including what was done well","issues":[{"wrong":"the incorrect phrase exactly as written","right":"the correct form","type":"one of: ${TYPES.en}","explanation":"why, with the rule, in 1–2 sentences"}]}
+
+If there are no errors, issues is an empty array.
+
+${qline}Diary:
+"""
+${body}
 """`}
 const str=(v,n)=>typeof v==='string'?v.slice(0,n||4000):'';
-async function runCheck(){
+async function runCheck(o){
   if(!SAMPLE){toast('この画面ではAI添削を使えません');return}
-  if(!Store.ready()) return;
-  saveDiary();
-  const text=($('#dText').value||'').trim(); if(!text){toast('先に日記を書いてください');return}
-  const lang=curLang(), date=S.dDate, ctl=new AbortController();
-  S.ai={date,lang,ctl}; renderAI();
+  if(!Store.ready()||S.ai) return;
+  const text=String(o.text||'').trim(); if(!text){toast(o.pid?'先に答えを書いてください':'先に日記を書いてください');return}
+  const lang=o.lang, date=o.date, ctl=new AbortController();
+  S.ai={date,lang,ctl,pid:o.pid||null}; renderAI(); renderQA();
   try{
-    const r=await SAMPLE.json(aiPrompt(lang,text),{signal:ctl.signal});
+    const r=await SAMPLE.json(aiPrompt(lang,text,o.question),{signal:ctl.signal});
     if(!r||typeof r!=='object'||typeof r.corrected!=='string') throw {code:'invalid_json'};
     const issues=(Array.isArray(r.issues)?r.issues:[]).slice(0,60).filter(i=>i&&typeof i==='object').map(i=>({wrong:str(i.wrong,500),right:str(i.right,500),type:str(i.type,40)||'その他',explanation:str(i.explanation,800)}));
-    const words=(Array.isArray(r.words)?r.words:[]).slice(0,12).filter(w=>w&&typeof w==='object'&&str(w.word,200).trim()).map(w=>({word:str(w.word,200).trim(),meaning:str(w.meaning,300),example:str(w.example,500),exampleJa:str(w.exampleJa,500),note:str(w.note,300)}));
-    await Store.add('checks',{date,lang,original:text.slice(0,20000),corrected:str(r.corrected,20000),natural:str(r.natural,20000),comment:str(r.comment,1000),issues,words,created:Date.now()});
-    S.lang=lang; toast(issues.length?`添削しました（指摘 ${issues.length}件）`:'添削しました。間違いはありませんでした');
+    const fx=x=>lang==='ru'?unstress(x):x;
+    const rec={date,lang,original:text.slice(0,20000),corrected:fx(str(r.corrected,20000)),natural:fx(str(r.natural,20000)),comment:str(r.comment,1000),issues,words:[],created:Date.now()};
+    if(o.pid){ rec.pid=o.pid; rec.question=o.question||'' }
+    await Store.add('checks',rec);
+    if(o.pid){ const words=text.split(/\s+/).filter(Boolean).length;
+      await Store.update('prompts',o.pid,{words,issues:issues.length,checkedAt:Date.now()});
+      setTimeout(()=>evalLevel(lang),1500) }
+    else S.lang=lang;
+    toast(issues.length?`添削しました（指摘 ${issues.length}件）`:'添削しました。間違いはありませんでした');
   }catch(e){
+    aiFail(e);
+  }finally{ S.ai=null; if(S.tab==='diary'){renderAI();renderQA()} }
+}
+function aiFail(e){
     const c=e&&e.code;
     if(c!=='cancelled') toast(c==='not_granted'?'AIの使用が許可されませんでした':c==='rate_limited'?'混み合っています。少し時間をおいてお試しください':c==='invalid_json'?'添削結果を読み取れませんでした。もう一度お試しください':c==='session_expired'?'Claude に再ログインしてください':'添削できませんでした。もう一度お試しください',4500);
     if(c==='not_granted'||c==='sampling_disabled'||c==='not_declared'||c==='capability_disabled'||c==='capability_removed') SAMPLE=null;
-  }finally{ S.ai=null; if(S.tab==='diary') renderAI() }
 }
+
+/* questions for days when the AI is not available (offline version) */
+const QBANK={
+ru:[
+'Какое слово или выражение вы считаете по-настоящему непереводимым — и почему?',
+'Опишите запах, который мгновенно возвращает вас в прошлое.',
+'Что бы вы сказали себе двадцатилетней, если бы у вас была всего одна минута?',
+'Есть ли привычка, от которой вы так и не смогли — или не захотели — отказаться?',
+'Какую книгу вы перечитывали не раз и что открывали в ней заново?',
+'Чему вас научила жизнь между несколькими языками — не о языках, а о людях?',
+'Опишите сегодняшнее утро так, будто это первая страница рассказа.',
+'Что для вас значит «чувствовать себя дома»?',
+'Какое музыкальное произведение точнее всего передаёт ваше нынешнее настроение?',
+'Если бы можно было провести один день в любом городе и в любую эпоху, что бы вы выбрали?',
+'Какой сезон вы любите больше всего и за какие мелочи?',
+'Вспомните человека, который когда-то сильно повлиял на ваш вкус — в музыке, книгах или еде.',
+'Что в последнее время вас искренне удивило?',
+'Опишите блюдо из детства так, чтобы читатель почувствовал его вкус.',
+'Как вы обычно восстанавливаете силы после трудного дня?',
+'Какой совет вы когда-то получили и поняли лишь спустя годы?',
+'Что, по-вашему, отличает хороший разговор от просто вежливого?',
+'Опишите место, где время для вас словно останавливается.',
+'Какое умение вы хотели бы освоить, если бы времени было сколько угодно?',
+'Какая мелочь сегодня доставила вам удовольствие?',
+'Что вы цените в одиночестве — и чего в нём опасаетесь?',
+'Опишите картину или фотографию, которая не выходит у вас из головы.',
+'Какую традицию — семейную или национальную — вы хотели бы сохранить и почему?',
+'Если бы ваш день был музыкальным произведением, какой у него был бы темп?',
+'Как изменилось ваше отношение ко времени с годами?',
+'Расскажите о случайной встрече, которая оказалась важной.',
+'Какой город вы знаете лучше всего и каким бы вы его показали гостю?',
+'Что для вас значит слово «уют»?',
+'О чём вы мечтали в детстве — и что из этого сбылось неожиданным образом?',
+'Опишите вид из своего окна в разное время дня.',
+'Какое решение далось вам труднее всего, но вы о нём не жалеете?',
+'Что вас вдохновляет, когда вдохновения совсем нет?',
+'Какое русское стихотворение или строка всплывает в памяти чаще других?',
+'Каким вы представляете себе идеальный выходной без телефона?',
+'Что вы недавно сделали впервые?',
+'Чему бы вы хотели научиться у природы?',
+'Опишите человека по его рукам, голосу или походке — не называя его.',
+'Если бы вы писали письмо себе через десять лет, с чего бы вы начали?',
+'Какое воспоминание вы бы хотели пережить ещё раз?',
+'Что сегодня осталось несказанным?'
+],
+es:[
+'¿Qué es lo más rico que has comido esta semana? Descríbelo.',
+'Si pudieras aprender una nueva habilidad en un mes, ¿cuál elegirías y por qué?',
+'Describe un lugar donde te sientes tranquila.',
+'¿Qué consejo te dio alguien hace tiempo que todavía recuerdas?',
+'¿Cómo sería tu domingo perfecto?',
+'Cuenta algo pequeño que te hizo sonreír hoy.',
+'¿Prefieres el mar o la montaña? ¿Por qué?',
+'¿Qué costumbre japonesa le explicarías a un amigo español?',
+'Si pudieras cenar con un artista o escritor de cualquier época, ¿a quién invitarías?',
+'¿Qué harías si mañana no tuvieras ninguna obligación?',
+'¿Cuál es tu estación del año favorita y qué te gusta hacer en ella?',
+'Describe tu desayuno ideal.',
+'¿Qué canción te pone de buen humor? ¿Por qué?',
+'Cuenta un viaje que recuerdas con cariño.',
+'¿Qué objeto de tu casa tiene una historia especial?',
+'¿Qué te gustaba hacer cuando eras niña?',
+'Si pudieras vivir un año en otro país, ¿dónde vivirías?',
+'¿Qué libro o película recomendarías a una amiga y por qué?',
+'Describe a una persona que admiras sin decir su nombre.',
+'¿Cómo te relajas después de un día difícil?',
+'¿Qué aprendiste esta semana?',
+'¿Qué plato te gustaría aprender a cocinar?',
+'Describe el lugar más bonito que has visto.',
+'¿Qué harías con un día extra cada semana?',
+'¿Cuál es tu recuerdo favorito de una fiesta o celebración?',
+'¿Qué te gustaría decirle a tu yo de hace diez años?',
+'Describe tu barrio a alguien que nunca lo ha visto.',
+'¿Qué es lo que más te gusta de aprender idiomas?',
+'Si fueras un animal, ¿cuál serías y por qué?',
+'¿Qué haces normalmente los sábados por la mañana?',
+'Cuenta una sorpresa agradable que hayas recibido.',
+'¿Qué te gustaría cambiar de tu rutina diaria?',
+'¿Qué música escuchas cuando trabajas?',
+'Describe el tiempo de hoy y cómo te hace sentir.',
+'¿Qué regalo te ha hecho más ilusión?',
+'Si pudieras hablar con tu abuela o tu abuelo hoy, ¿qué le preguntarías?',
+'¿Qué ciudad española o latinoamericana te gustaría visitar?',
+'¿Cuál es la mejor decisión que tomaste este año?',
+'¿Qué haces para cuidar tu salud?',
+'¿Qué planes tienes para el fin de semana?'
+],
+en:[
+'What\'s something small that made your day better recently?',
+'Describe a skill you\'d love to master, and what you would do with it.',
+'What\'s a habit you\'ve started, or one you\'d like to start?',
+'Tell me about a place you\'d like to visit again, and why.',
+'What does a perfect evening look like for you?',
+'What was the most interesting conversation you had this week?',
+'If you could live in another century, which one would you choose?',
+'What advice would you give someone visiting your city for the first time?',
+'Describe a piece of music that means a lot to you.',
+'What did you learn today — about anything at all?',
+'What\'s your favourite way to spend a rainy day?',
+'Describe a meal you will never forget.',
+'Who has influenced you the most, and how?',
+'What would you do if you had a whole month off?',
+'Describe your morning routine. Would you change anything about it?',
+'What\'s a book or film you think everyone should experience?',
+'Tell me about a time you were pleasantly surprised.',
+'What\'s something you used to dislike but now enjoy?',
+'If you could have dinner with anyone from history (outside politics), who would it be?',
+'What makes a place feel like home to you?',
+'Describe the view from your window right now.',
+'What\'s the best gift you\'ve ever received?',
+'What do you enjoy most about speaking several languages?',
+'Describe a tradition you love.',
+'What would your ideal weekend trip look like?',
+'What\'s a small luxury you allow yourself?',
+'Tell me about a mistake that taught you something valuable.',
+'What season suits your personality best, and why?',
+'Describe a person you met recently without naming them.',
+'What would you like to get better at this year?',
+'What\'s a smell or sound that brings back memories?',
+'If you could instantly master an instrument, which would you choose?',
+'What do you usually do to relax?',
+'Describe the last thing that made you laugh.',
+'What\'s a goal you\'re working towards right now?',
+'Tell me about your favourite café or restaurant.',
+'What would you write in a letter to your future self?',
+'What\'s something you\'re grateful for today?',
+'Describe a perfect day in your favourite city.',
+'What question would you like someone to ask you?'
+]};
+
+/* ---------- daily writing prompts ---------- */
+const LEVELS=['A2','A2+','B1','B1+','B2','B2+','C1','C1+','C2','C2+'];
+const LV_DEFAULT={ru:'C2',es:'A2',en:'A2'}, LV_MAX={ru:'C2+',es:'C1',en:'C1'};
+/* grammar curriculum: one focus per day, rotating within the current level */
+const CURR={
+ es:{'A2':[['es-pres-irr','Presente: verbos irregulares（現在形・不規則動詞）'],['es-perf','Pretérito perfecto（現在完了）'],['es-indef','Pretérito indefinido（点過去）'],['es-ira','Ir a + infinitivo（近い未来）'],['es-reflex','Verbos reflexivos（再帰動詞）']],
+  'A2+':[['es-imperf','Pretérito imperfecto（線過去）'],['es-indef-imperf','Indefinido vs. imperfecto（点過去と線過去）'],['es-perf-indef','Perfecto vs. indefinido（現在完了と点過去）'],['es-estar-ger','Estar + gerundio（進行形）'],['es-fut','Futuro simple（未来形）']],
+  'B1':[['es-plusc','Pluscuamperfecto（過去完了）'],['es-cond','Condicional simple（過去未来・婉曲）'],['es-subj-deseo','Presente de subjuntivo: deseos — quiero que, ojalá（接続法現在・願望）'],['es-subj-emo','Subjuntivo con emociones — me alegra que…（接続法・感情）'],['es-imper','Imperativo afirmativo y negativo（命令形）']],
+  'B1+':[['es-subj-tiempo','Subjuntivo con cuando / hasta que / en cuanto（時の接続詞＋接続法）'],['es-subj-fin','Subjuntivo con para que / antes de que / sin que（目的・前後）'],['es-subj-duda','Subjuntivo con duda — no creo que…（疑い・否定の意見）'],['es-subj-rel','Subjuntivo en relativas — busco a alguien que…（関係節）'],['es-fut-prob','Futuro y condicional de probabilidad（推量）']],
+  'B2':[['es-imp-subj','Imperfecto de subjuntivo（接続法過去）'],['es-si2','Si + imperfecto de subjuntivo + condicional（現在の事実に反する仮定）'],['es-perf-subj','Pretérito perfecto de subjuntivo（接続法現在完了）'],['es-indirecto','Estilo indirecto y concordancia de tiempos（間接話法・時制の一致）'],['es-subj-pasado','Subjuntivo en pasado — quería que, me pidió que（過去の文脈の接続法）']],
+  'B2+':[['es-si3','Si + pluscuamperfecto de subjuntivo + condicional compuesto（過去の事実に反する仮定）'],['es-comosi','Como si + subjuntivo（まるで〜のように）'],['es-aunque','Aunque + indicativo / subjuntivo（譲歩の使い分け）'],['es-cond-comp','Condicional compuesto（過去未来完了）'],['es-perifrasis','Perífrasis: llevar + gerundio, acabar de, volver a（動詞迂言法）']],
+  'C1':[['es-matices','Matices de modo — el hecho de que, por mucho que, quizás（叙法のニュアンス）'],['es-concord','Concordancia de tiempos en textos complejos（複雑な時制の一致）'],['es-fut-comp','Futuro y condicional compuesto de probabilidad（完了形の推量）'],['es-se','Pasiva refleja e impersonal con se（se受動・無人称）'],['es-relat','Relativos: lo cual, cuyo, el que（関係詞）']]},
+ en:{'A2':[['en-past','Past simple: regular & irregular verbs（過去形）'],['en-prog','Present continuous vs present simple（現在進行形と現在形）'],['en-future','Will vs going to（未来表現）'],['en-comp','Comparatives & superlatives（比較）']],
+  'A2+':[['en-pp','Present perfect vs past simple（現在完了と過去形）'],['en-pastprog','Past continuous（過去進行形）'],['en-modal1','Modals: can, should, must, have to（助動詞）'],['en-quant','Countable / uncountable & quantifiers（可算・不可算）']],
+  'B1':[['en-ppc','Present perfect continuous（現在完了進行形）'],['en-cond1','First conditional（第一条件文）'],['en-usedto','Used to / would（過去の習慣）'],['en-passive','Passive voice: present & past（受動態）']],
+  'B1+':[['en-cond2','Second conditional（第二条件文）'],['en-pastperf','Past perfect（過去完了）'],['en-reported','Reported speech（間接話法）'],['en-relative','Relative clauses（関係詞節）']],
+  'B2':[['en-cond3','Third & mixed conditionals（第三・混合条件文）'],['en-wish','Wish / if only（願望）'],['en-modalperf','Modal perfects: must have, could have, should have（助動詞＋完了）'],['en-gerinf','Gerunds vs infinitives（動名詞と不定詞）']],
+  'B2+':[['en-futperf','Future continuous & future perfect（未来進行・未来完了）'],['en-causative','Causative: have / get something done（使役）'],['en-passmodal','Passive with modals & reporting verbs（助動詞の受動態）'],['en-linkers','Although, despite, whereas（譲歩・対比の接続表現）']],
+  'C1':[['en-inversion','Inversion: never have I, not only…（倒置）'],['en-cleft','Cleft sentences: what I need is…（強調構文）'],['en-partcl','Participle clauses（分詞構文）'],['en-subjunctive','Subjunctive: it is essential that he be…（仮定法現在）']]}};
+function pickGrammar(lang){const lv=levels()[lang], C=CURR[lang]; if(!C) return null;
+  const list=C[lv]||C[Object.keys(C).filter(k=>LEVELS.indexOf(k)<=LEVELS.indexOf(lv)).pop()]||C['C1']; if(!list) return null;
+  const hist=Store.data.prompts.filter(p=>p.lang===lang&&p.gkey).sort((a,b)=>b.date.localeCompare(a.date)).map(p=>p.gkey);
+  const age=k=>{const i=hist.indexOf(k);return i<0?1e9:i};
+  return [...list].sort((a,b)=>age(b[0])-age(a[0]))[0]}
+const LV_DESC={'A2':'ごく身近な話題を短い文で。基本語彙と基本時制を正確に','A2+':'身近な話題を、つなぎの言葉を使って少し長く','B1':'経験や気持ちを順序立てて説明できる。よく使う時制の使い分け','B1+':'身近な話題を詳しく。理由や意見を添え、文法の幅を広げる','B2':'自然で明快な文。複文や仮定表現など中上級の文法を適度に','B2+':'B2より語彙を広げ、接続表現や慣用的な言い回しを増やす',
+  'C1':'幅広い語彙と慣用表現、複雑な構文。ニュアンスの違いを意識した文章','C1+':'C1に加え、文体の使い分けや抽象的な話題も','C2':'教養ある母語話者の文章。慣用句、文体の幅、繊細なニュアンス','C2+':'文学的・修辞的な表現も含む、高度で洗練された文章'};
+const pidOf=(date,lang)=>date+'_'+lang;
+function levels(){const p=Store.data.profile.find(x=>x.id==='levels')||{};
+  return {ru:p.ru||LV_DEFAULT.ru,es:p.es||LV_DEFAULT.es,en:p.en||LV_DEFAULT.en,changed:p.changed||{}}}
+async function setLevel(lang,lv,auto){const cur=levels(); const o={ru:cur.ru,es:cur.es,en:cur.en,changed:Object.assign({},cur.changed,{[lang]:Date.now()})};
+  o[lang]=lv; await Store.put('profile','levels',o); if(auto) toast(`${LANG[lang]}の作文レベルが ${lv} に上がりました`,6000)}
+function getPrompt(date,lang){return Store.data.prompts.find(p=>p.id===pidOf(date,lang))}
+const needGen=(d,l)=>{const p=getPrompt(d,l); return !p||(p.bank&&!(p.answer||'').trim())};
+function bankPrompt(date,lang){const B=QBANK[lang], n=Math.round(parse(date)/864e5)+(lang==='es'?13:lang==='en'?27:0);
+  return {id:pidOf(date,lang),date,lang,question:B[((n%B.length)+B.length)%B.length],sample:'',practice:[],level:levels()[lang],theme:'',answer:'',bank:true}}
+function promptFor(date,lang){const p=getPrompt(date,lang); if(p) return p;
+  if(date===today()&&(SAMPLE===null||S.qErr)) return bankPrompt(date,lang); return null}
+function weakPoints(lang){const since=Date.now()-30*864e5;
+  const C=Store.data.checks.filter(c=>c.lang===lang&&(c.created||0)>since).sort((a,b)=>(b.created||0)-(a.created||0));
+  const types={}; C.forEach(c=>(c.issues||[]).forEach(i=>types[i.type]=(types[i.type]||0)+1));
+  return {items:C.flatMap(c=>c.issues||[]).slice(0,14),types:Object.entries(types).sort((a,b)=>b[1]-a[1]).slice(0,5)}}
+function genPromptText(date,langs,foc){const lv=levels(); foc=foc||{};
+  const recentQ=l=>Store.data.prompts.filter(p=>p.lang===l).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,25).map(p=>'- '+p.question).join('\n')||'（なし）';
+  const wk=l=>{const w=weakPoints(l);
+    return (w.types.length?'よく間違える分類: '+w.types.map(([t,n])=>`${t}（${n}回）`).join('、')+'\n':'')+(w.items.length?'最近の間違い（誤 → 正）:\n'+w.items.map(i=>`- ${i.wrong} → ${i.right}（${i.type}）`).join('\n'):'最近の間違い: まだありません')};
+  const block=l=>`### ${l}（${LANG[l]}）\nレベル: ${lv[l]} — ${LV_DESC[lv[l]]||''}\n${foc[l]?`今日の文法: ${foc[l][1]}\n`:''}${wk(l)}\n最近出した質問（これらと重ならないこと）:\n${recentQ(l)}`;
+  return `あなたは、ロシア語・スペイン語・英語の作文を指導する先生です。学習者は日本語を母語とする大人の女性で、日記の代わりに、毎日各言語で1問ずつの質問に答えて書く練習をしています。今日（${date}）の質問を作ってください。
+
+条件:
+- 政治・外交・戦争・時事的な論争は扱わないこと。日常、思い出、食、自然、季節、旅、芸術、音楽、本、映画、言葉、仕事や学び、人との関わり、仮定の話など、言語ごとに違うテーマにし、毎日変化をつけること。
+- question: 短くても長くても答えられる、開かれた質問を1つ。その言語で書く。指定レベルにふさわしい語彙と構文で。
+- sample: その質問への見本の答え。指定レベルの自然な文章で5行程度（3〜5文）。学習者が読解し、まねて書く手本になる。最近の間違いがあれば、その正しい形を自然に1〜2か所使う。
+- practice: 今日の答えで使ってみてほしい表現を2〜3個（sample の中から、その言語で）。最近の間違いに関係するものを優先する。
+- theme: テーマを日本語で短く（例: 季節、食、思い出）。
+- 「今日の文法」が指定されている言語では: question は、その文法を自然に使って答えたくなる質問にする（例: 接続法なら願望・感情・仮定を引き出す質問）。sample ではその文法を3回以上、自然に使う。practice にはその文法を使った形を含める。さらに drill として、その文法の穴埋め問題を5問作る。各問は {"q":"文（空欄は ___、括弧内に不定詞・原形。例: Ojalá que mañana ___ (hacer) buen tiempo.）","a":"正解（複数可能なら / で区切る）","hint":"短いヒント（その言語で。例: subjuntivo tras ojalá）"} の形で、日常的な内容にする。
+- ロシア語には強勢記号を付けないこと。
+
+${langs.map(block).join('\n\n')}
+
+次の形のJSONだけを返してください（上に挙げた言語のキーだけ）。JSON以外の文章は書かないでください。
+{${langs.map(l=>`"${l}":{"question":"…","sample":"…","practice":["…"],"theme":"…"${foc[l]?',"drill":[{"q":"…","a":"…","hint":"…"}]':''}}`).join(',')}}`}
+async function ensureToday(){
+  const d=today(); if(!SAMPLE||S.qGen||S.qErr||Store.mode==='loading') return;
+  const missing=LANGS.filter(l=>needGen(d,l)); if(!missing.length) return;
+  S.qGen=true; renderQA();
+  try{
+    const foc={}; missing.forEach(l=>{const g=pickGrammar(l); if(g) foc[l]=g});
+    const r=await SAMPLE.json(genPromptText(d,missing,foc));
+    let n=0;
+    for(const l of missing){ const x=r&&r[l]; if(!x||typeof x.question!=='string'||!x.question.trim()||!needGen(d,l)) continue;
+      const fx=t=>l==='ru'?unstress(t):t;
+      await Store.put('prompts',pidOf(d,l),{date:d,lang:l,level:levels()[l],question:fx(str(x.question,600)),sample:fx(str(x.sample,3000)),
+        practice:(Array.isArray(x.practice)?x.practice:[]).map(p=>fx(str(p,120)).trim()).filter(Boolean).slice(0,4),theme:str(x.theme,40),answer:'',created:Date.now(),
+        gkey:foc[l]?foc[l][0]:'',grammar:foc[l]?foc[l][1]:'',drill:foc[l]&&Array.isArray(x.drill)?x.drill.filter(q=>q&&typeof q==='object'&&str(q.q,300).includes('___')).slice(0,8).map(q=>({q:str(q.q,300),a:str(q.a,120),hint:str(q.hint,160)})):[]}); n++ }
+    if(!n) throw {code:'invalid_json'};
+  }catch(e){ S.qErr=true; if(e&&e.code!=='cancelled') toast('今日の質問を作れなかったため、用意してある質問を表示します',4500) }
+  finally{ S.qGen=false; if(S.tab==='diary') renderQA() }
+}
+let qDirty=false,qTimer=null;
+function renderQA(){
+  const wrap=$('#qWrap'); if(!wrap) return;
+  const d=S.dDate, has=l=>{const p=getPrompt(d,l);return !!(p&&p.answer&&p.answer.trim())};
+  if(!S.qLang) S.qLang=LANGS.find(l=>!has(l))||'ru';
+  const lang=S.qLang;
+  $('#qLang').innerHTML=LANGS.map(l=>`<button class="chip" data-act="qLang" data-v="${l}" aria-pressed="${lang===l}">${LANG[l]}${has(l)?' ✓':''}</button>`).join('');
+  if(d===today()&&SAMPLE&&!S.qGen&&!S.qErr&&Store.mode!=='loading'&&LANGS.some(l=>needGen(d,l))) ensureToday();
+  const p=promptFor(d,lang), m0=$('#qMsg0');
+  if(!p){ wrap.hidden=true;
+    m0.textContent=S.qGen?'今日の質問とサンプルを用意しています…（数十秒かかることがあります）':d!==today()?'この日の質問はありません。':(SAMPLE===undefined||Store.mode==='loading')?'読み込み中…':'';
+    return }
+  wrap.hidden=false; m0.textContent=p.bank?'オフライン用の質問です。サンプルの答えは Claude 版で毎日作られます。':'';
+  const card=$('#qCard'), ta=$('#qAns'), fresh=card.dataset.pid!==p.id;
+  card.dataset.pid=p.id; card.dataset.date=p.date; card.dataset.lang=p.lang;
+  $('#qBadge').textContent=LANG[p.lang]; $('#qLvl').textContent=p.level||levels()[p.lang]; $('#qTheme').textContent=p.theme||'';
+  $('#qText').textContent=p.question;
+  $('#qPrac').innerHTML=(p.practice||[]).length?`今日使ってみたい表現：${p.practice.map(x=>`<b>${esc(x)}</b>`).join('')}`:'';
+  const sb=$('#qSampleBox'); sb.hidden=!p.sample; $('#qSample').textContent=p.sample||'';
+  $('#qGram').textContent=p.grammar?`今日の文法：${p.grammar}`:'';
+  if(fresh||!$('#qDrill').dataset.pid||$('#qDrill').dataset.pid!==p.id){ const dr=p.drill||[]; $('#qDrill').dataset.pid=p.id;
+    $('#qDrill').innerHTML=dr.length?`<details class="drill"><summary>動詞トレーニング（${dr.length}問）</summary><ol>${dr.map((q,i)=>`<li><p>${esc(q.q)}</p><div class="drow"><label class="sr" for="dr_${i}">答え</label><input id="dr_${i}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"><button class="mini" data-act="drCheck" data-i="${i}">答え合わせ</button></div><p class="dres" id="drr_${i}"></p></li>`).join('')}</ol></details>`:'' }
+  if(fresh){ sb.open=false; ta.value=p.answer||''; qDirty=false; ta.placeholder=`${LANG[p.lang]}で答えてみましょう。一言でも、長くても大丈夫です。`; setQSave(p.updated&&p.answer?'保存済み':'') }
+  else if(!qDirty&&document.activeElement!==ta&&ta.value!==(p.answer||'')) ta.value=p.answer||'';
+  qCountUpd();
+  const running=S.ai&&S.ai.pid===p.id;
+  const run=$('#qRun'); run.hidden=!SAMPLE||!!running; run.disabled=!!S.ai; $('#qStop').hidden=!running;
+  $('#qMsg').textContent=running?'AIが添削しています…（数十秒かかることがあります）':SAMPLE===null?'添削は Claude 版で使えます':'';
+  const out=$('#qOut');
+  if(running) out.innerHTML='';
+  else { const c=Store.data.checks.filter(x=>x.pid===p.id).sort((a,b)=>(b.created||0)-(a.created||0));
+    out.innerHTML=c.length?checkHtml(c[0])+(c.length>1?`<p class="found" style="margin-top:8px">この答えの添削は${c.length}回目です。書き直して、もう一度添削してみましょう。</p>`:''):'' }
+}
+function setQSave(t){const el=$('#qSave'); if(el) el.textContent=t}
+function qCountUpd(){const ta=$('#qAns'),c=$('#qCount'); if(ta&&c){const w=ta.value.trim()?ta.value.trim().split(/\s+/).length:0; c.textContent=`${w} 語`}}
+async function saveQ(){clearTimeout(qTimer); if(!qDirty) return;
+  const ta=$('#qAns'), card=$('#qCard'); if(!ta||!card||!card.dataset.pid){qDirty=false;return}
+  if(Store.mode==='loading'){qTimer=setTimeout(saveQ,1500);return}
+  const p=getPrompt(card.dataset.date,card.dataset.lang)||promptFor(card.dataset.date,card.dataset.lang); if(!p){qDirty=false;return}
+  const ans=ta.value; qDirty=false; setQSave('保存中…');
+  const o=Object.assign({},p,{answer:ans,updated:Date.now()}); delete o.id;
+  await Store.put('prompts',p.id,o);
+  if(!qDirty) setQSave('保存しました')}
+view.addEventListener('input',e=>{if(e.target.id==='qAns'){qDirty=true;setQSave('入力中…');qCountUpd();clearTimeout(qTimer);qTimer=setTimeout(saveQ,1200)}});
+view.addEventListener('focusout',e=>{if(e.target.id==='qAns') saveQ()});
+function levelStats(lang){const lv=levels(), since=lv.changed[lang]||0;
+  const P=Store.data.prompts.filter(p=>p.lang===lang&&p.checkedAt&&p.checkedAt>since&&(p.words||0)>=8).sort((a,b)=>b.checkedAt-a.checkedAt).slice(0,6);
+  const w=P.reduce((s,p)=>s+p.words,0), e=P.reduce((s,p)=>s+(p.issues||0),0);
+  return {n:P.length,rate:w?e/w*100:null}}
+function evalLevel(lang){const cur=levels()[lang], i=LEVELS.indexOf(cur); if(i<0||i>=LEVELS.indexOf(LV_MAX[lang]||'C2+')) return;
+  const st=levelStats(lang); if(st.n>=5&&st.rate!==null&&st.rate<=3) setLevel(lang,LEVELS[i+1],true)}
+function renderLevels(){const box=$('#lvBox'); if(!box) return; const lv=levels();
+  if(box.contains(document.activeElement)) return;
+  box.innerHTML=LANGS.map(l=>{const st=levelStats(l);
+    return `<div class="row lvrow"><label for="lv_${l}">${LANG[l]}</label><select id="lv_${l}" data-lv="${l}">${LEVELS.map(x=>`<option ${x===lv[l]?'selected':''}>${x}</option>`).join('')}</select>
+    <small>${st.n?`直近${st.n}回：100語あたり誤り ${st.rate.toFixed(1)}`:'まだ判定材料がありません'}${st.n<5?`（あと${5-st.n}回の添削で判定）`:''}</small></div>`}).join('');
+}
+view.addEventListener('change',e=>{const l=e.target.dataset&&e.target.dataset.lv; if(l){ setLevel(l,e.target.value,false); toast(`${LANG[l]}の作文レベルを ${e.target.value} にしました（明日の質問から反映）`,4000) }});
 
 /* ---------- vocabulary & flashcards ---------- */
 async function addVocab(lang,w,source){
   if(Store.data.vocab.some(v=>vKey(v.lang,v.word)===vKey(lang,w.word))) return false;
-  await Store.add('vocab',{lang,word:w.word,meaning:w.meaning||'',example:w.example||'',exampleJa:w.exampleJa||'',note:w.note||'',source:source||{},created:Date.now(),box:1,due:today(),reviews:0,correct:0});
+  await Store.add('vocab',{lang,word:w.word,meaning:w.meaning||'',synonyms:Array.isArray(w.synonyms)?w.synonyms:[],example:w.example||'',exampleJa:w.exampleJa||'',note:w.note||'',source:source||{},created:Date.now(),box:1,due:today(),reviews:0,correct:0});
   return true }
 function renderLearn(){
+  renderLevels();
   const D=Store.data, L=S.lLang;
   const counts=l=>D.vocab.filter(v=>l==='all'||v.lang===l).length;
   $('#lLang').innerHTML=[['all','すべて'],...LANGS.map(l=>[l,LANG[l]])].map(([k,l])=>`<button class="chip" data-act="lLang" data-v="${k}" aria-pressed="${L===k}">${l}（${counts(k)}）</button>`).join('');
@@ -659,7 +1025,7 @@ function renderCard(){
   const v=Store.data.vocab.find(x=>x.id===c.ids[c.i]); if(!v){c.i++;return renderCard()}
   box.innerHTML=`<div class="card"><p class="cinfo"><span><span class="lang">${LANG[v.lang]||''}</span> ${c.i+1} / ${c.ids.length}</span>${dots(v.box)}</p>
    <p class="cword">${esc(v.word)}</p>
-   ${c.show?`<p class="cmean">${esc(v.meaning)}</p>${v.example?`<p class="cex">${esc(v.example)}${v.exampleJa?`<br>${esc(v.exampleJa)}`:''}</p>`:''}${v.note?`<p class="cex">${esc(v.note)}</p>`:''}
+   ${c.show?`<p class="cmean">${esc(v.meaning||'（説明なし）')}</p>${(v.synonyms||[]).length?`<p class="cex">${SYN[v.lang]||'同意語'}: ${esc(v.synonyms.join(', '))}</p>`:''}${v.example?`<p class="cex">${esc(v.example)}${v.exampleJa?`<br>${esc(v.exampleJa)}`:''}</p>`:''}${v.note?`<p class="cex">${esc(v.note)}</p>`:''}
      <div class="cbtns"><button class="btn ghost" data-act="cardNo">まだ</button><button class="btn" data-act="cardYes">覚えた</button></div>`
    :`<div class="cbtns"><button class="btn" data-act="cardShow">答えを見る</button></div>`}
    <div class="cbtns"><button class="linkbtn" data-act="cardEnd" style="margin-top:0">練習をやめる</button></div></div>`;
@@ -675,7 +1041,7 @@ function header(){const d=new Date();
   $('#dateHead').textContent=fmtLong(today());}
 function setTab(t,push){
   if(!VIEWS.includes(t)) t='today';
-  saveDiary(); saveMemo(); if(t!=='learn') S.card=null;
+  saveDiary(); saveMemo(); saveQ(); if(t!=='learn') S.card=null; if(!S.selBusy){$('#selBar').hidden=true; S.sel=null}
   S.tab=t; view.innerHTML=shells[t]();
   if(t==='diary') loadDiary();
   if(t==='memo') loadMemo();
@@ -688,8 +1054,8 @@ function setTab(t,push){
 }
 document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(b){saveMemo();S.memoId=null;S.editTask=S.editEvent=null;setTab(b.dataset.tab,true)}});
 window.addEventListener('hashchange',()=>setTab(location.hash.slice(1)));
-document.addEventListener('visibilitychange',()=>{if(document.hidden){saveDiary();saveMemo()}else refresh()});
-window.addEventListener('pagehide',()=>{saveDiary();saveMemo()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){saveDiary();saveMemo();saveQ()}else refresh()});
+window.addEventListener('pagehide',()=>{saveDiary();saveMemo();saveQ()});
 
 /* ---------- actions ---------- */
 function startEditTask(id){const t=Store.data.tasks.find(x=>x.id===id); if(!t)return;
@@ -722,13 +1088,26 @@ view.addEventListener('click',async e=>{
   else if(act==='dPrev') openDiary(addDays(S.dDate,-1));
   else if(act==='dNext'){ if(S.dDate<today()) openDiary(addDays(S.dDate,1)) }
   else if(act==='aiLang'){S.lang=b.dataset.v;renderAI()}
-  else if(act==='aiRun') runCheck();
+  else if(act==='aiRun'){ saveDiary(); runCheck({text:($('#dText')||{}).value,lang:curLang(),date:S.dDate}) }
+  else if(act==='qRun'){ const c=$('#qCard'); await saveQ(); const p=getPrompt(c.dataset.date,c.dataset.lang)||promptFor(c.dataset.date,c.dataset.lang); if(p) runCheck({text:$('#qAns').value,lang:p.lang,date:p.date,pid:p.id,question:p.question}) }
+  else if(act==='qLang'){ await saveQ(); S.qLang=b.dataset.v; renderQA() }
+  else if(act==='drCheck'){ const c=$('#qCard'), p=getPrompt(c.dataset.date,c.dataset.lang), i=+b.dataset.i, q=p&&p.drill&&p.drill[i]; if(!q) return;
+    const cl=x=>String(x).toLowerCase().replace(/[.,;:!?¡¿"'«»“”]+/g,'').replace(/\s+/g,' ').trim(); const inp=$('#dr_'+i), out=$('#drr_'+i), v=cl(inp.value), opts=String(q.a).split('/').map(cl);
+    const bare=x=>x.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    if(!v){ out.className='dres'; out.textContent=`正解：${q.a}${q.hint?'（'+q.hint+'）':''}`; return }
+    if(opts.includes(v)){ out.className='dres ok'; out.textContent='✓ 正解！'+(q.hint?'（'+q.hint+'）':'') }
+    else if(opts.some(o=>bare(o)===bare(v))){ out.className='dres ng'; out.textContent=`△ アクセント記号に注意：${q.a}` }
+    else { out.className='dres ng'; out.textContent=`✗ 正解：${q.a}${q.hint?'（'+q.hint+'）':''}` } }
   else if(act==='aiStop'){ if(S.ai) S.ai.ctl.abort() }
   else if(act==='vAdd'||act==='vAddAll'){const c=Store.data.checks.find(x=>x.id===id); if(!c)return;
     const ws=act==='vAdd'?[c.words[+b.dataset.k]]:c.words; let n=0;
     for(const w of ws) if(w&&await addVocab(c.lang,w,{date:c.date,checkId:c.id})) n++;
     toast(n?`単語帳に${n}語追加しました`:'すでに登録されています'); }
-  else if(act==='chkOpen'){const c=Store.data.checks.find(x=>x.id===id); if(c){S.lang=c.lang; openDiary(c.date||today())}}
+  else if(act==='vExplain'){const v=Store.data.vocab.find(x=>x.id===id); if(!v||!SAMPLE)return; b.disabled=true; b.textContent='作成中…';
+    try{ const w=await explainWord(v.lang,v.word,v.example||''); const p={meaning:w.meaning,synonyms:w.synonyms,note:w.note||v.note||''}; if(!v.example) p.example=w.example; if(w.exampleJa) p.exampleJa=w.exampleJa;
+      await Store.update('vocab',id,p); toast('説明を付けました') }catch(e){ aiFail(e); if(b.isConnected){b.disabled=false;b.textContent='説明を付ける'} } }
+  else if(act==='chkOpen'){const c=Store.data.checks.find(x=>x.id===id); if(c){ if(c.pid){openDiary(c.date||today()); S.qLang=c.lang; renderQA()} else {S.lang=c.lang; openDiary(c.date||today())} }}
+  else if(act==='qOpen'){const p=Store.data.prompts.find(x=>x.id===id); if(p){openDiary(p.date); S.qLang=p.lang; renderQA()}}
   else if(act==='lLang'){S.lLang=b.dataset.v;S.card=null;renderLearn()}
   else if(act==='cardStart') startCards();
   else if(act==='cardShow'){ if(S.card){S.card.show=true;renderCard()} }
@@ -780,7 +1159,7 @@ async function saveDiary(){clearTimeout(dTimer); if(!dDirty)return;
   const date=S.dDate,text=ta.value; dDirty=false; setSave('保存中…');
   if(text.trim()) await Store.put('diary',date,{text,updated:Date.now()}); else await Store.remove('diary',date);
   if(S.dDate===date&&!dDirty) setSave(text.trim()?'保存しました':'');}
-function openDiary(d){saveDiary(); S.dDate=d;
+function openDiary(d){saveDiary(); saveQ(); if(S.dDate!==d) S.qLang=null; S.dDate=d;
   if(S.tab!=='diary') setTab('diary',true); else {loadDiary();refresh();window.scrollTo(0,0)}}
 view.addEventListener('input',e=>{if(e.target.id==='dText'){dDirty=true;setSave('入力中…');dCount();clearTimeout(dTimer);dTimer=setTimeout(saveDiary,1200)}});
 view.addEventListener('focusout',e=>{if(e.target.id==='dText'){saveDiary(); if(!S.lang) renderAI()}});
@@ -808,6 +1187,71 @@ function openMemo(id){saveMemo(); S.memoId=id||genId();
   if(S.tab!=='memo') setTab('memo',true); else {loadMemo();refresh();window.scrollTo(0,0)}}
 view.addEventListener('input',e=>{if(e.target.id==='mTitle'||e.target.id==='mBody'){mDirty=true;const ms=$('#mSave');if(ms)ms.textContent='入力中…';clearTimeout(mTimer);mTimer=setTimeout(saveMemo,1200)}});
 view.addEventListener('focusout',e=>{if(e.target.id==='mTitle'||e.target.id==='mBody')saveMemo()});
+
+/* ---------- send a selected word or phrase to the vocabulary ---------- */
+const unstress=x=>String(x||'').normalize('NFD').replace(/́/g,'').normalize('NFC');
+function wordPrompt(lang,text,context){const ctx=context||text;
+  if(lang==='ru') return `Ты — преподаватель русского языка, учащийся владеет языком на уровне C2. В тексте он выделил выражение: «${text}».
+Контекст: «${ctx}»
+
+Составь статью для его личного словаря. Пиши только по-русски, ударения не ставь. Толкуй значение через синонимы и краткое пояснение, без перевода на другие языки.
+Верни только JSON такого вида, без другого текста:
+{"word":"словарная (начальная) форма; для устойчивого выражения — само выражение","meaning":"толкование значения в этом контексте: синонимы и краткое пояснение, 1–2 предложения","synonyms":["2–5 синонимов или близких по смыслу выражений"],"example":"пример употребления (можно взять предложение из контекста, исправив при необходимости)","note":"грамматика и сочетаемость кратко: род, видовая пара, управление, стилистическая окраска; пустая строка, если добавить нечего"}`;
+  if(lang==='es') return `Eres profesor de español; la estudiante tiene nivel B2. En un texto ha seleccionado la expresión: «${text}».
+Contexto: «${ctx}»
+
+Redacta una entrada para su vocabulario personal. Escribe solo en español. Explica el significado con sinónimos y una breve definición, sin traducir a otros idiomas.
+Devuelve solo un JSON con esta forma, sin otro texto:
+{"word":"forma de diccionario (con artículo si es un sustantivo, p. ej. la mesa); si es una locución, la locución","meaning":"significado en este contexto: sinónimos y una breve explicación, 1–2 frases","synonyms":["2–5 sinónimos o expresiones cercanas"],"example":"ejemplo de uso (puede ser la frase del contexto, corregida si hace falta)","note":"notas breves de gramática y uso: género, régimen preposicional, registro; cadena vacía si no hay nada que añadir"}`;
+  return `You are an English teacher; the learner is at B2 level. In a text they selected the expression: "${text}".
+Context: "${ctx}"
+
+Write an entry for their personal vocabulary list. Write only in English. Explain the meaning with synonyms and a short definition, without translating into other languages.
+Return only JSON in this shape, with no other text:
+{"word":"dictionary form (for a phrase, the phrase itself)","meaning":"meaning in this context: synonyms and a short explanation, 1–2 sentences","synonyms":["2–5 synonyms or close expressions"],"example":"an example of use (the context sentence may be used, corrected if needed)","note":"brief grammar and usage notes: part of speech, common collocations, register; empty string if nothing to add"}`}
+async function explainWord(lang,text,context){
+  const r=await SAMPLE.json(wordPrompt(lang,text,context));
+  if(!r||typeof r!=='object') throw {code:'invalid_json'};
+  const fx=x=>lang==='ru'?unstress(x):x;
+  return {word:fx(str(r.word,200).trim()||text),meaning:fx(str(r.meaning,800)),synonyms:(Array.isArray(r.synonyms)?r.synonyms:[]).map(x=>fx(str(x,80)).trim()).filter(Boolean).slice(0,8),
+    example:fx(str(r.example,500))||context||'',exampleJa:str(r.exampleJa,500),note:fx(str(r.note,400))} }
+function sentenceAround(text,sel){text=String(text||''); const i=text.indexOf(sel); if(i<0) return '';
+  const marks=['.','!','?','\n','。','…'];
+  const st=Math.max(...marks.map(c=>text.lastIndexOf(c,i-1)))+1;
+  const ends=marks.map(c=>text.indexOf(c,i+sel.length)).filter(x=>x>=0), en=ends.length?Math.min(...ends)+1:text.length;
+  return text.slice(st,en).trim().slice(0,400)}
+function readSel(){
+  const ta=$('#dText'), ae=document.activeElement;
+  if(ta&&ae===ta&&ta.selectionEnd>ta.selectionStart){const t=ta.value.slice(ta.selectionStart,ta.selectionEnd);return {text:t,lang:curLang(),context:sentenceAround(ta.value,t)}}
+  const sl=window.getSelection&&window.getSelection(); if(!sl||sl.isCollapsed||!sl.rangeCount) return null;
+  const t=sl.toString(), an=sl.anchorNode, node=an&&(an.nodeType===1?an:an.parentElement); if(!node||!view.contains(node)) return null;
+  const chk=node.closest('[data-lang]'), host=node.closest('p,li,span,div');
+  return {text:t,lang:chk?chk.dataset.lang:(detectLang(t)||curLang()),context:sentenceAround(host?host.textContent:'',t)}}
+let selHideT=null;
+function hideSel(){ $('#selBar').hidden=true; S.sel=null; try{window.getSelection().removeAllRanges()}catch(e){} }
+function onSel(){
+  if(S.selBusy) return;
+  const s=readSel(), t=s&&s.text.replace(/\s+/g,' ').trim().replace(/^[«"“'(\[]+|[»"”'),.!?:;…\]]+$/g,'');
+  clearTimeout(selHideT);
+  if(t&&t.length<=60&&t.split(' ').length<=6&&/\p{L}/u.test(t)&&!/[぀-ヿ一-鿿]/.test(t)){
+    S.sel={text:t,lang:LANGS.includes(s.lang)?s.lang:'ru',context:s.context};
+    $('#selTxt').textContent=`「${t}」（${LANG[S.sel.lang]}）`; $('#selBar').hidden=false }
+  else selHideT=setTimeout(()=>{ if(!S.selBusy){$('#selBar').hidden=true;S.sel=null} },700) }
+document.addEventListener('selectionchange',onSel);
+view.addEventListener('select',onSel,true);
+$('#selBar').addEventListener('pointerdown',()=>clearTimeout(selHideT));
+$('#selClose').addEventListener('click',hideSel);
+$('#selAdd').addEventListener('click',async()=>{
+  const s=S.sel; if(!s||!Store.ready()) return;
+  if(Store.data.vocab.some(v=>vKey(v.lang,v.word)===vKey(s.lang,s.text))){toast('すでに単語帳にあります');hideSel();return}
+  const src={date:S.tab==='diary'?S.dDate:'',context:s.context};
+  if(!SAMPLE){ await addVocab(s.lang,{word:s.text,example:s.context},src); toast('単語帳に送りました（説明は Claude 版で付けられます）',3500); hideSel(); return }
+  const btn=$('#selAdd'); S.selBusy=true; btn.disabled=true; btn.textContent='作成中…'; $('#selTxt').textContent=`「${s.text}」の説明を作っています…`;
+  try{ const w=await explainWord(s.lang,s.text,s.context);
+    if(Store.data.vocab.some(v=>vKey(v.lang,v.word)===vKey(s.lang,w.word))) toast('すでに単語帳にあります');
+    else { await addVocab(s.lang,w,src); toast(`「${w.word}」を単語帳に追加しました`) } }
+  catch(e){ aiFail(e) }
+  finally{ S.selBusy=false; btn.disabled=false; btn.textContent='単語帳へ'; hideSel() } });
 
 /* ---------- search ---------- */
 const reEsc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
@@ -850,11 +1294,12 @@ function buildWorkbook(){
     D.events.forEach(e=>R.push([e.date,'予定',e.start||'終日',e.title||'',[e.end?'〜'+e.end:'',e.memo||''].filter(Boolean).join(' '),e.place||'','']));
     D.tasks.forEach(t=>R.push([t.due||ymdOf(t.created),'タスク','',t.title||'','優先度 '+PRI[t.priority||'mid']+(t.due?'':'（期限なし・登録日）'),t.category||'',t.done?'完了':'未完了']));
     D.diary.filter(x=>x.text).forEach(e=>R.push([e.id,'日記','',snip(e.text,30),cut(e.text),'','']));
+    D.prompts.filter(p=>p.answer&&p.answer.trim()).forEach(p=>R.push([p.date,'作文','',`${LANG[p.lang]||''}：${p.question}`,cut(p.answer),LANG[p.lang]||'',p.level||'']));
     D.checks.forEach(c=>R.push([c.date||ymdOf(c.created),'添削',hm(c.created),`${LANG[c.lang]||''}・指摘${(c.issues||[]).length}件`,cut(c.corrected),LANG[c.lang]||'','']));
     D.memos.forEach(m=>R.push([ymdOf(m.created),'メモ',hm(m.created),m.title||'（無題）',cut(m.body),'','更新 '+dt(m.updated)]));
     const byDay={}; D.habits.forEach(h=>Object.keys(h.log||{}).forEach(d=>{if(h.log[d])(byDay[d]=byDay[d]||[]).push(h.name)}));
     Object.keys(byDay).forEach(d=>R.push([d,'習慣','','達成した習慣（'+byDay[d].length+'件）',byDay[d].join('、'),'','']));
-    const ord={'予定':0,'タスク':1,'習慣':2,'日記':3,'添削':4,'メモ':5};
+    const ord={'予定':0,'タスク':1,'習慣':2,'日記':3,'作文':4,'添削':5,'メモ':6};
     R.sort((a,b)=>a[0]!==b[0]?(a[0]<b[0]?-1:1):ord[a[1]]!==ord[b[1]]?ord[a[1]]-ord[b[1]]:String(a[2]).localeCompare(String(b[2])));
     add('すべて（時系列）',[['日付','曜日','種類','時刻','内容','詳細・本文','分類・場所','状態'],
       ...R.map(r=>[r[0],wd(r[0]),r[1],r[2],r[3],r[4],r[5],r[6]])],[12,6,8,8,32,60,16,14]);
@@ -866,12 +1311,14 @@ function buildWorkbook(){
   add('日記',[['日付','曜日','本文','文字数','最終更新'],
     ...D.diary.filter(x=>x.text).sort((a,b)=>a.id.localeCompare(b.id)).map(e=>[e.id,wd(e.id),cut(e.text),e.text.length,dt(e.updated)])],[12,6,80,8,20]);
   const C=[...D.checks].sort((a,b)=>(a.date||'').localeCompare(b.date||'')||(a.created||0)-(b.created||0));
-  add('添削',[['日付','曜日','言語','元の文','訂正後','より自然な言い方','講評','指摘数','添削日時'],
-    ...C.map(c=>[c.date||'',wd(c.date),LANG[c.lang]||'',cut(c.original),cut(c.corrected),cut(c.natural),c.comment||'',(c.issues||[]).length,dt(c.created)])],[12,6,10,50,50,50,40,8,20]);
+  add('毎日の作文',[['日付','曜日','言語','レベル','テーマ','今日の文法','質問','サンプルの答え','使ってみたい表現','動詞トレーニング','自分の答え','語数','指摘数'],
+    ...[...D.prompts].sort((a,b)=>a.date.localeCompare(b.date)||LANGS.indexOf(a.lang)-LANGS.indexOf(b.lang)).map(p=>[p.date,wd(p.date),LANG[p.lang]||'',p.level||'',p.theme||'',p.grammar||'',p.question||'',cut(p.sample),(p.practice||[]).join(' / '),(p.drill||[]).map((q,i)=>`${i+1}. ${q.q} → ${q.a}`).join('\n'),cut(p.answer),p.words||(p.answer||'').trim().split(/\s+/).filter(Boolean).length,p.checkedAt?(p.issues||0):''])],[12,6,10,6,10,30,50,60,30,50,60,6,6]);
+  add('添削',[['日付','曜日','言語','質問','元の文','訂正後','より自然な言い方','講評','指摘数','添削日時'],
+    ...C.map(c=>[c.date||'',wd(c.date),LANG[c.lang]||'',c.question||'',cut(c.original),cut(c.corrected),cut(c.natural),c.comment||'',(c.issues||[]).length,dt(c.created)])],[12,6,10,40,50,50,50,40,8,20]);
   add('指摘事項',[['日付','言語','分類','間違い','正しい形','説明'],
     ...C.flatMap(c=>(c.issues||[]).map(i=>[c.date||'',LANG[c.lang]||'',i.type||'',i.wrong||'',i.right||'',i.explanation||'']))],[12,10,16,30,30,60]);
-  add('単語帳',[['言語','単語','意味','例文','例文の訳','メモ','出典の日付','習熟度（1〜6）','練習回数','正解数','次の復習日','登録日'],
-    ...[...D.vocab].sort((a,b)=>(a.lang||'').localeCompare(b.lang||'')||(a.created||0)-(b.created||0)).map(v=>[LANG[v.lang]||'',v.word||'',v.meaning||'',v.example||'',v.exampleJa||'',v.note||'',(v.source&&v.source.date)||'',v.box||1,v.reviews||0,v.correct||0,v.due||'',dt(v.created)])],[10,20,24,40,30,24,12,12,8,8,12,20]);
+  add('単語帳',[['言語','単語','意味・説明','同意語','例文','例文の訳','メモ','出典の日付','習熟度（1〜6）','練習回数','正解数','次の復習日','登録日'],
+    ...[...D.vocab].sort((a,b)=>(a.lang||'').localeCompare(b.lang||'')||(a.created||0)-(b.created||0)).map(v=>[LANG[v.lang]||'',v.word||'',v.meaning||'',(v.synonyms||[]).join(', '),v.example||'',v.exampleJa||'',v.note||'',(v.source&&v.source.date)||'',v.box||1,v.reviews||0,v.correct||0,v.due||'',dt(v.created)])],[10,20,40,30,40,30,24,12,12,8,8,12,20]);
   const H=[...D.habits].sort((a,b)=>(a.created||'').localeCompare(b.created||''));
   add('メモ',[['タイトル','本文','作成日時','更新日時'],
     ...[...D.memos].sort((a,b)=>(b.updated||0)-(a.updated||0)).map(m=>[m.title||'',cut(m.body),dt(m.created),dt(m.updated)])],[30,80,20,20]);
@@ -904,6 +1351,8 @@ function mergeData(inc){
     Object.entries(tombIn[c]||{}).forEach(([id,ts])=>{ ts=+ts||0; if(!tombs[id]||ts>tombs[id]) tombs[id]=ts });
     const map=new Map((D[c]||[]).map(x=>[x.id,x])), before=new Map(map);
     (Array.isArray(inc[c])?inc[c]:[]).forEach(it=>{ if(!it||typeof it!=='object'||!okId(it.id)) return; const cur=map.get(it.id);
+      if(c==='prompts'&&cur&&!!cur.bank!==!!it.bank){ const ha=x=>!!String(x.answer||'').trim();
+        const pick=ha(cur)!==ha(it)?(ha(cur)?cur:it):(cur.bank?it:cur); if(pick!==cur) map.set(it.id,pick); return }
       if(!cur||(it.updated||0)>(cur.updated||0)) map.set(it.id,it) });
     for(const [id,it] of map) if(tombs[id]!=null&&tombs[id]>=(it.updated||0)) map.delete(id);
     for(const [id,it] of map){ if(!before.has(id)){res.added++;changes.push({c,id,item:it})} else if(before.get(id)!==it){res.updated++;changes.push({c,id,item:it})} }

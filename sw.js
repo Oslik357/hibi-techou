@@ -1,5 +1,5 @@
 // 日々の手帳 — offline cache. Shows the saved copy instantly, refreshes it in the background when online.
-const CACHE = 'hibi-techou-v4';
+const CACHE = 'hibi-techou-v8';
 const FILES = ['./', './index.html', './xlsx.full.min.js', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
