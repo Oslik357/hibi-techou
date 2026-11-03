@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#F2F4F8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#10141C" media="(prefers-color-scheme: dark)">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon-180.png">
-<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest?v=3">
+<link rel="apple-touch-icon" href="icon-180.png?v=3">
+<link rel="icon" href="icon-192.png?v=3">
 <style>
 html{-webkit-text-size-adjust:100%;color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0}
@@ -22,8 +22,8 @@ body{margin:0}
   --bg:#F2F4F8; --surface:#FFFFFF; --ink:#18202F; --muted:#5B677D; --line:#D9DFE9;
   --accent:#2C4E85; --accent-soft:#E2E9F5; --on-accent:#FFFFFF;
   --danger:#B23E2A; --danger-soft:#F8E6E2; --warn:#9A6414; --warn-soft:#F6EEDC; --ok:#2B7553; --ok-soft:#E0F1E8;
-  --f-display:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
-  --f-body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;
+  --f-display:"Times New Roman","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,"Hiragino Sans","Yu Gothic",sans-serif;
   --r:10px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -49,7 +49,7 @@ button,input,select{font:inherit;color:inherit}
 .top h1{margin:2px 0 0;font-family:var(--f-display);font-weight:700;font-size:30px;line-height:1.25;text-wrap:balance}
 .status{margin:6px 0 0;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--muted)}
-.status.ok::before{background:var(--ok)} .status.due{color:var(--warn)} .status.due::before{background:var(--warn)}
+.status.cloud::before{background:var(--ok)} .status.local::before{background:var(--warn)}
 
 main{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 section{margin-top:22px}
@@ -119,8 +119,8 @@ input,select{width:100%;box-sizing:border-box;background:var(--bg);border:1px so
 
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
-.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
-.tab{background:none;border:0;padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:var(--muted);cursor:pointer;position:relative}
+.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(7,1fr)}
+.tab{background:none;border:0;padding:8px 0 10px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:var(--muted);cursor:pointer;position:relative}
 .tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .tab[aria-current="page"]{color:var(--accent);font-weight:700}
 .badge{position:absolute;top:4px;left:calc(50% + 6px);background:var(--danger);color:var(--on-accent);border-radius:999px;font-size:10px;min-width:16px;padding:0 4px;line-height:16px;font-weight:700}
@@ -155,6 +155,33 @@ input,select{width:100%;box-sizing:border-box;background:var(--bg);border:1px so
 mark{background:var(--warn-soft);color:var(--ink);border-radius:2px;padding:0 1px;box-shadow:inset 0 -2px 0 var(--warn)}
 .found{font-size:13px;color:var(--muted);margin:0}
 @media (prefers-reduced-motion: no-preference){.item,.habit-card{transition:opacity .2s}}
+/* ---- language study ---- */
+.ai{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
+.aiacts{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+.lang{display:inline-block;border-radius:4px;padding:0 6px;font-size:11px;font-weight:700;background:var(--accent-soft);color:var(--accent);letter-spacing:.02em;white-space:nowrap}
+.chk{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.chk h4{margin:10px 0 0;font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.06em}
+.ccom{margin:0;background:var(--ok-soft);color:var(--ink);border-radius:8px;padding:8px 12px;font-size:14px}
+.ctext{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.75}
+.issues{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.issues li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;overflow-wrap:anywhere}
+.issues p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+.ityp{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 6px;margin-right:6px;color:var(--muted);vertical-align:1px}
+.wr{color:var(--danger);text-decoration:line-through;text-decoration-thickness:1px}
+.rt{color:var(--ok);font-weight:700}
+.vmean{color:var(--muted);font-weight:400;margin-left:6px}
+.dots{letter-spacing:2px;color:var(--ok);font-size:11px}
+.dots i{font-style:normal;color:var(--line)}
+.card{background:var(--surface);border:1px solid var(--accent);box-shadow:0 0 0 1px var(--accent);border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.card .cinfo{margin:0;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.card .cword{margin:6px 0;font-size:30px;font-weight:700;text-align:center;overflow-wrap:anywhere;line-height:1.3}
+.card .cmean{margin:0;font-size:18px;text-align:center}
+.card .cex{margin:0;font-size:14px;color:var(--muted);text-align:center;overflow-wrap:anywhere}
+.card .cbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.card .cbtns .btn{min-width:120px}
+details.vadd{margin:10px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
+details.vadd summary{cursor:pointer;font-size:13px;color:var(--accent);font-weight:700}
+details.vadd .form{border:0;padding:10px 0 0;background:transparent}
 </style>
 </head>
 <body>
@@ -184,6 +211,7 @@ mark{background:var(--warn-soft);color:var(--ink);border-radius:2px;padding:0 1p
   <button class="tab" data-tab="schedule"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>予定</button>
   <button class="tab" data-tab="diary"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg>日記</button>
   <button class="tab" data-tab="memo"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg>メモ</button>
+  <button class="tab" data-tab="learn"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8.5 13l2.5-6 2.5 6M9.4 11h3.2"/><path d="M15.5 8.5h3M17 8.5v4"/></svg>語学</button>
 </div></nav>
 
 <script src="xlsx.full.min.js"></script>
@@ -202,53 +230,101 @@ const fmtShort=s=>{const d=parse(s);return `${d.getMonth()+1}/${d.getDate()}（$
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const PRI={high:'高',mid:'中',low:'低'}, PRANK={high:0,mid:1,low:2};
 const DEFAULT_CATS=['IPPジャパン','トーション','MITIA','個人'];
+const LANG={ru:'ロシア語',es:'スペイン語',en:'英語'}, LANGS=['ru','es','en'];
 const genId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const LK='hibi-techou-v1';
-const VIEWS=['today','tasks','habits','schedule','diary','memo','search'];
-const S={tab:'today',editTask:null,editEvent:null,filter:'open',cat:'',showPast:false,day:today(),dDate:today(),q:'',sKind:'all',memoId:null};
+const COLS=['tasks','habits','events','diary','memos','checks','vocab'];
+const VIEWS=['today','tasks','habits','schedule','diary','memo','learn','search'];
+const S={tab:'today',editTask:null,editEvent:null,filter:'open',cat:'',showPast:false,day:today(),dDate:today(),q:'',sKind:'all',memoId:null,
+  lang:null,ai:null,lLang:'all',card:null};
 
 function toast(msg,ms){const t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,ms||2600)}
+const use=name=>{try{return (window.claude&&window.claude.use)?window.claude.use(name).catch(()=>null):Promise.resolve(null)}catch(e){return Promise.resolve(null)}};
 
-/* ---------- storage: this device only (IndexedDB), works offline ---------- */
-const COLS=['tasks','habits','events','diary','memos'];
-let _db=null;
-function idb(){ if(_db) return Promise.resolve(_db);
-  return new Promise((res,rej)=>{const r=indexedDB.open('hibi-techou',1);
-    r.onupgradeneeded=()=>r.result.createObjectStore('kv');
-    r.onsuccess=()=>{_db=r.result;res(_db)}; r.onerror=()=>rej(r.error)})}
+/* ---------- device storage (IndexedDB, falls back to localStorage) ---------- */
+let _idb=null;
+function idb(){ if(_idb) return Promise.resolve(_idb);
+  return new Promise((res,rej)=>{ if(!window.indexedDB) return rej(new Error('no idb')); const r=indexedDB.open('hibi-techou',1);
+    r.onupgradeneeded=()=>r.result.createObjectStore('kv'); r.onsuccess=()=>{_idb=r.result;res(_idb)}; r.onerror=()=>rej(r.error)})}
 async function idbGet(k){const db=await idb();return new Promise((res,rej)=>{const q=db.transaction('kv').objectStore('kv').get(k);q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)})}
 async function idbSet(k,v){const db=await idb();return new Promise((res,rej)=>{const t=db.transaction('kv','readwrite');t.objectStore('kv').put(v,k);t.oncomplete=()=>res();t.onerror=()=>rej(t.error)})}
-const Store={mode:'loading',meta:{lastExport:0},data:{tasks:[],habits:[],events:[],diary:[],memos:[],deleted:{}},
+
+/* ---------- store: Claude cloud (synced) or this device only ---------- */
+const emptyData=()=>({tasks:[],habits:[],events:[],diary:[],memos:[],checks:[],vocab:[],deleted:{}});
+const okId=id=>typeof id==='string'&&/^[A-Za-z0-9_\-.~:@+]{1,200}$/.test(id)&&id!=='.'&&id!=='..';
+const Store={mode:'loading',data:emptyData(),meta:{lastExport:0},base:null,delRef:null,
   async init(){
-    try{const v=await idbGet('data'); if(v) this.data=Object.assign(this.data,v); const m=await idbGet('meta'); if(m) this.meta=Object.assign(this.meta,m)}
-    catch(e){ try{const j=JSON.parse(localStorage.getItem(LK)||'null'); if(j) Object.assign(this.data,j)}catch(_){} }
-    try{ if(navigator.storage&&navigator.storage.persist) navigator.storage.persist() }catch(e){}
-    this.mode='local'; status(); refresh();
+    try{const m=await idbGet('meta'); if(m) this.meta=Object.assign(this.meta,m)}catch(e){ try{const m=JSON.parse(localStorage.getItem(LK+'-meta')||'null'); if(m)Object.assign(this.meta,m)}catch(_){} }
+    const [db,user]=await Promise.all([use('db'),use('user')]);
+    let uid=null; try{ if(user) uid=await user.id() }catch(e){}
+    if(db&&uid){
+      this.mode='cloud';
+      this.base=db.doc(`data/users/${uid}/app`);
+      this.delRef=this.base.collection('meta').doc('deleted');
+      COLS.forEach(c=>{
+        this.base.collection(c).onSnapshot(s=>{this.data[c]=s.docs.map(d=>Object.assign({id:d.id},d.data()));refresh()},
+          ()=>toast('同期が止まりました。ページを開き直してください'));
+      });
+      this.delRef.onSnapshot(s=>{this.data.deleted=s.exists?(s.data()||{}):{}},()=>{});
+    }else{
+      this.mode='local';
+      let v=null; try{ v=await idbGet('data') }catch(e){}
+      if(!v){ try{ v=JSON.parse(localStorage.getItem(LK)||'null') }catch(e){} }
+      if(v) this.data=Object.assign(emptyData(),v);
+      try{ if(navigator.storage&&navigator.storage.persist) navigator.storage.persist() }catch(e){}
+    }
+    status(); refresh();
   },
   ready(){ if(this.mode==='loading'){toast('読み込み中です。少し待ってからもう一度どうぞ');return false} return true },
   saveLocal(){ idbSet('data',this.data).catch(()=>{ try{localStorage.setItem(LK,JSON.stringify(this.data))}catch(e){toast('この端末に保存できませんでした')} }) },
-  saveMeta(){ idbSet('meta',this.meta).catch(()=>{}) },
-  async add(c,obj){ if(!this.ready())return;
-    this.data[c].push(Object.assign({id:genId()},obj,{updated:Date.now()})); this.saveLocal(); refresh() },
+  saveMeta(){ idbSet('meta',this.meta).catch(()=>{ try{localStorage.setItem(LK+'-meta',JSON.stringify(this.meta))}catch(e){} }) },
+  async add(c,obj){ if(!this.ready())return null;
+    const id=genId(), o=Object.assign({},obj,{updated:Date.now()});
+    if(this.mode==='cloud'){ try{await this.base.collection(c).doc(id).set(o)}catch(e){fail(e);return null} }
+    else { this.data[c].push(Object.assign({id},o)); this.saveLocal(); refresh() }
+    return id },
   async update(c,id,patch){ if(!this.ready())return;
+    const p=Object.assign({},patch,{updated:Date.now()});
+    if(this.mode==='cloud'){ try{await this.base.collection(c).doc(id).update(p)}catch(e){fail(e)} return }
     const it=this.data[c].find(x=>x.id===id); if(!it)return;
-    for(const k in patch){ if(patch[k]&&typeof patch[k]==='object'&&!Array.isArray(patch[k])) it[k]=Object.assign({},it[k]||{},patch[k]); else it[k]=patch[k]; }
-    it.updated=Date.now(); this.saveLocal(); refresh() },
+    for(const k in p){ if(p[k]&&typeof p[k]==='object'&&!Array.isArray(p[k])) it[k]=Object.assign({},it[k]||{},p[k]); else it[k]=p[k]; }
+    this.saveLocal(); refresh() },
   async put(c,id,obj){ if(!this.ready())return;
-    const i=this.data[c].findIndex(x=>x.id===id), o=Object.assign({id},obj); if(!o.updated) o.updated=Date.now();
-    if(i>=0) this.data[c][i]=o; else this.data[c].push(o); this.saveLocal(); refresh() },
+    const o=Object.assign({},obj); delete o.id; if(!o.updated) o.updated=Date.now();
+    if(this.mode==='cloud'){ try{await this.base.collection(c).doc(id).set(o)}catch(e){fail(e)} return }
+    const i=this.data[c].findIndex(x=>x.id===id), n=Object.assign({id},o); if(i>=0) this.data[c][i]=n; else this.data[c].push(n); this.saveLocal(); refresh() },
   async remove(c,id){ if(!this.ready())return;
     const had=this.data[c].some(x=>x.id===id);
-    this.data[c]=this.data[c].filter(x=>x.id!==id);
-    if(had){ (this.data.deleted[c]=this.data.deleted[c]||{})[id]=Date.now() }
-    this.saveLocal(); refresh() }
+    const del=JSON.parse(JSON.stringify(this.data.deleted||{})); if(had)(del[c]=del[c]||{})[id]=Date.now();
+    if(this.mode==='cloud'){ try{ await this.base.collection(c).doc(id).delete(); if(had){ this.data.deleted=del; await this.delRef.set(del) } }catch(e){fail(e)} return }
+    this.data[c]=this.data[c].filter(x=>x.id!==id); this.data.deleted=del; this.saveLocal(); refresh() },
+  /* apply the result of mergeData() */
+  async apply(m){
+    if(this.mode==='cloud'){
+      let n=0; const total=m.changes.length;
+      for(const ch of m.changes){
+        const ref=this.base.collection(ch.c).doc(ch.id);
+        try{ if(ch.item){const o=Object.assign({},ch.item); delete o.id; await ref.set(o)} else await ref.delete() }
+        catch(e){ if(e&&e.code==='quota_exceeded'){fail(e);return false} }
+        n++; if(total>20&&n%10===0) toast(`読み込み中… ${n}/${total}`,60000);
+      }
+      try{ await this.delRef.set(m.deleted) }catch(e){}
+      this.data.deleted=m.deleted; return true;
+    }
+    for(const ch of m.changes){
+      const arr=this.data[ch.c], i=arr.findIndex(x=>x.id===ch.id);
+      if(ch.item){ if(i>=0) arr[i]=ch.item; else arr.push(ch.item) } else if(i>=0) arr.splice(i,1);
+    }
+    this.data.deleted=m.deleted; this.saveLocal(); return true;
+  }
 };
+function fail(e){ toast(e&&e.code==='quota_exceeded'?'保存容量がいっぱいです。不要な項目を削除してください':'保存できませんでした。もう一度お試しください') }
 function fmtAgo(n){ if(!n) return ''; const d=new Date(n); return `${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}` }
 function status(){const el=$('#status'), le=Store.meta.lastExport;
   if(Store.mode==='loading'){el.className='status';el.textContent='読み込み中…';return}
-  const days=le?Math.floor((Date.now()-le)/864e5):null;
-  el.className='status '+(days===null||days>=7?'due':'ok');
-  el.textContent='この端末に保存 ・ '+(le?`最後の書き出し ${fmtAgo(le)}`:'まだ書き出していません')+(days!==null&&days>=7?`（${days}日前）`:'');}
+  const days=le?Math.floor((Date.now()-le)/864e5):null, late=days===null||days>=7;
+  el.className='status '+(Store.mode==='cloud'?'ok':late?'due':'ok');
+  el.textContent=(Store.mode==='cloud'?'PC・iPhone で同期中':'この端末に保存')+' ・ '+(le?`最後の書き出し ${fmtAgo(le)}`:'まだ書き出していません')+(days!==null&&days>=7?`（${days}日前）`:'');}
 
 /* ---------- derived data ---------- */
 function streak(log){let d=today(); if(!log||!log[d]) d=addDays(d,-1); let n=0; while(log&&log[d]){n++; d=addDays(d,-1)} return n}
@@ -262,14 +338,24 @@ function gcal(e){
   const p=new URLSearchParams({action:'TEMPLATE',text:e.title||'予定',ctz:'Asia/Tokyo'});
   const d=e.date.replace(/-/g,'');
   if(e.start){
-    const st=d+'T'+e.start.replace(':','')+'00';
-    let en;
+    const st=d+'T'+e.start.replace(':','')+'00'; let en;
     if(e.end&&e.end>e.start) en=d+'T'+e.end.replace(':','')+'00';
     else{const [h,m]=e.start.split(':').map(Number); en=d+'T'+(h>=23?'2359':pad(h+1)+pad(m))+'00'}
     p.set('dates',st+'/'+en);
   }else p.set('dates',d+'/'+addDays(e.date,1).replace(/-/g,''));
   if(e.place)p.set('location',e.place); if(e.memo)p.set('details',e.memo);
   return 'https://calendar.google.com/calendar/render?'+p.toString();
+}
+const norm=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/́/g,'').replace(/ё/g,'е');
+const vKey=(lang,w)=>lang+'|'+norm(w).trim();
+const BOX_DAYS=[0,0,1,3,7,14,30];
+const isDue=v=>!v.due||v.due<=today();
+function detectLang(t){ t=String(t||'');
+  const cyr=(t.match(/[Ѐ-ӿ]/g)||[]).length, lat=(t.match(/[A-Za-zÀ-ÿ]/g)||[]).length;
+  if(cyr>=lat&&cyr>0) return 'ru';
+  if(!lat) return null;
+  if(/[ñ¿¡]|[áéíóú]/i.test(t)||/\b(el|los|las|que|de|y|en|una?|muy|pero|porque|hoy|estoy|fue|está)\b/i.test(t)&&!/\b(the|and|is|was|i'm|it's|of)\b/i.test(t)) return 'es';
+  return 'en';
 }
 
 /* ---------- item templates ---------- */
@@ -281,12 +367,18 @@ function taskItem(t){const td=today();let due='';
   <div class="body"><p class="ttl">${esc(t.title)}</p><p class="meta"><span class="pri p-${pr}">優先度 ${PRI[pr]}</span>${due}${t.category?`<span class="cat">${esc(t.category)}</span>`:''}</p></div>
   <div class="acts"><button class="mini" data-act="editTask" data-id="${esc(t.id)}">編集</button><button class="mini" data-act="del" data-col="tasks" data-id="${esc(t.id)}">削除</button></div></li>`}
 function habitToday(h){const d=today(),on=!!(h.log&&h.log[d]),s=streak(h.log);
-  return `<li class="item ${on?'':''}"><button class="check" data-act="toggleHab" data-id="${esc(h.id)}" data-d="${d}" aria-pressed="${on}" aria-label="今日の記録"></button>
+  return `<li class="item"><button class="check" data-act="toggleHab" data-id="${esc(h.id)}" data-d="${d}" aria-pressed="${on}" aria-label="今日の記録"></button>
   <div class="body"><p class="ttl">${esc(h.name)}</p><p class="meta">${s?`<span class="streak">${s}日連続</span>`:'今日から始めましょう'}</p></div></li>`}
 function evItem(e,withActs){
   const tm=e.start?`${e.start}${e.end?`<small>〜${e.end}</small>`:''}`:'終日';
   return `<li class="item"><div class="time">${tm}</div><div class="body"><p class="ttl">${esc(e.title)}</p>${(e.place||e.memo)?`<p class="meta">${e.place?esc(e.place):''}${e.place&&e.memo?' ・ ':''}${e.memo?esc(e.memo):''}</p>`:''}</div>
   ${withActs?`<div class="acts"><a class="mini" href="${esc(gcal(e))}" target="_blank" rel="noopener">カレンダーに追加</a><button class="mini" data-act="editEvent" data-id="${esc(e.id)}">編集</button><button class="mini" data-act="del" data-col="events" data-id="${esc(e.id)}">削除</button></div>`:''}</li>`}
+const dots=b=>{b=Math.max(1,Math.min(6,b||1));return `<span class="dots" title="習熟度 ${b}/6">${'●'.repeat(b)}<i>${'●'.repeat(6-b)}</i></span>`};
+function vocabItem(v,T){const h=T?(x=>hl(x,T)):esc;
+  return `<li class="item"><div class="body"><p class="ttl"><span class="lang">${LANG[v.lang]||''}</span> ${h(v.word)}<span class="vmean">${h(v.meaning)}</span></p>
+  ${v.example?`<p class="meta">${h(v.example)}${v.exampleJa?' ／ '+h(v.exampleJa):''}</p>`:''}
+  <p class="meta">${dots(v.box)}${v.note?`<span>${h(v.note)}</span>`:''}${v.source&&v.source.date?`<span>${fmtShort(v.source.date)}の日記から</span>`:''}</p></div>
+  <div class="acts"><button class="mini" data-act="del" data-col="vocab" data-id="${esc(v.id)}">削除</button></div></li>`}
 
 /* ---------- view shells (forms stay put while lists refresh) ---------- */
 const shells={
@@ -326,7 +418,7 @@ const shells={
   </form>
   <p class="note">「カレンダーに追加」を押すと Google カレンダーの登録画面が開きます（インターネット接続が必要です）。iPhone の「設定 → カレンダー → アカウント」で Google アカウントを追加しておくと、iPhone のカレンダーにも表示されます。開始時刻を空欄にすると終日の予定になります。</p></section>
   <div id="lEvents"></div><button class="linkbtn" id="pastBtn" data-act="past"></button>`,
- search:()=>`<section><h2>検索</h2><form class="quick" id="fSearch" role="search" style="margin-top:0"><label class="sr" for="sQ">検索する言葉</label><input id="sQ" type="search" placeholder="例：見積、打ち合わせ" autocomplete="off" enterkeyhint="search"></form>
+ search:()=>`<section><h2>検索</h2><form class="quick" id="fSearch" role="search" style="margin-top:0"><label class="sr" for="sQ">検索する言葉</label><input id="sQ" type="search" placeholder="例：見積、打ち合わせ、слово" autocomplete="off" enterkeyhint="search"></form>
   <div class="chips" id="sChips"></div><div id="sRes"></div></section>`,
  memo:()=>`<section id="mList"><div class="dnav"><h2 style="justify-content:flex-start;text-align:left">メモ <small>新しく更新した順</small></h2><button class="btn" data-act="mNew">新しいメモ</button></div><ul class="list" id="lMemo"></ul></section>
   <section id="mEdit" hidden><div class="dnav"><button class="mini" data-act="mBack">‹ 一覧へ</button><span class="found" id="mSave"></span><button class="mini" id="mDel" data-act="del" data-col="memos">削除</button></div>
@@ -334,8 +426,46 @@ const shells={
  diary:()=>`<section><div class="dnav"><button class="mini" data-act="dPrev">‹ 前の日</button><h2 id="dHead"></h2><button class="mini" id="dNext" data-act="dNext">次の日 ›</button></div>
   <div class="paper"><label class="sr" for="dText">日記</label><textarea id="dText" placeholder="今日の出来事、会った人、考えたこと、うれしかったことなど、自由に書いてください。書いた内容は自動で保存されます。"></textarea></div>
   <div class="dfoot"><span id="dSave"></span><span id="dCount"></span></div></section>
-  <section><h2>これまでの日記 <small>タップで開いて読み返し・追記</small></h2><ul class="list" id="lDiary"></ul></section>`
+  <section class="ai"><h2>語学の添削 <small>ロシア語・スペイン語・英語</small></h2>
+   <div class="chips" id="aiLang" style="margin-top:0"></div>
+   <div class="aiacts"><button class="btn" id="aiRun" data-act="aiRun" hidden>AIで添削する</button><button class="btn ghost" id="aiStop" data-act="aiStop" hidden>中止</button><span class="found" id="aiMsg"></span></div>
+   <div id="aiOut"></div></section>
+  <section><h2>これまでの日記 <small>タップで開いて読み返し・追記</small></h2><ul class="list" id="lDiary"></ul></section>`,
+ learn:()=>`<div class="chips" id="lLang" style="margin-top:14px"></div>
+  <section style="margin-top:8px"><div class="dnav"><h2 style="justify-content:flex-start;text-align:left">単語帳 <small id="vCount"></small></h2><button class="btn" id="cardBtn" data-act="cardStart">カードで練習</button></div>
+   <div id="cardBox"></div>
+   <details class="vadd" id="vAddBox"><summary>単語を自分で追加する</summary>
+    <form class="form" id="fVocab">
+     <div class="grid">
+      <div class="row"><label for="vLang">言語</label><select id="vLang"><option value="ru">ロシア語</option><option value="es">スペイン語</option><option value="en">英語</option></select></div>
+      <div class="row"><label for="vWord">単語・表現</label><input id="vWord" required autocomplete="off"></div>
+      <div class="row"><label for="vMean">意味</label><input id="vMean" autocomplete="off"></div>
+     </div>
+     <div class="grid">
+      <div class="row"><label for="vEx">例文</label><input id="vEx" autocomplete="off"></div>
+      <div class="row"><label for="vNote">メモ（性・活用など）</label><input id="vNote" autocomplete="off"></div>
+     </div>
+     <div class="formacts"><button class="btn">追加</button></div>
+    </form></details>
+   <ul class="list" id="lVocab"></ul></section>
+  <section><h2>添削の記録 <small>タップでその日の日記と添削を開く</small></h2><ul class="list" id="lChecks"></ul></section>`
 };
+
+/* ---------- AI check result ---------- */
+function checkHtml(c){
+  const V=new Set(Store.data.vocab.map(v=>vKey(v.lang,v.word)));
+  const issues=c.issues||[], words=c.words||[];
+  const notIn=words.filter(w=>!V.has(vKey(c.lang,w.word))).length;
+  return `<div class="chk">
+   ${c.comment?`<p class="ccom">${esc(c.comment)}</p>`:''}
+   <h4>訂正後</h4><p class="ctext">${esc(c.corrected)}</p>
+   ${c.natural&&c.natural.trim()&&c.natural.trim()!==String(c.corrected||'').trim()?`<h4>より自然な言い方</h4><p class="ctext">${esc(c.natural)}</p>`:''}
+   <h4>指摘（${issues.length}件）</h4>
+   ${issues.length?`<ol class="issues">${issues.map(i=>`<li><span class="ityp">${esc(i.type||'その他')}</span><span class="wr">${esc(i.wrong)}</span> → <span class="rt">${esc(i.right)}</span>${i.explanation?`<p>${esc(i.explanation)}</p>`:''}</li>`).join('')}</ol>`:'<p class="found">間違いは見つかりませんでした。</p>'}
+   ${words.length?`<h4>覚えたい単語</h4><ul class="list">${words.map((w,k)=>`<li class="item"><div class="body"><p class="ttl">${esc(w.word)}<span class="vmean">${esc(w.meaning)}</span></p>${w.example?`<p class="meta">${esc(w.example)}${w.exampleJa?' ／ '+esc(w.exampleJa):''}</p>`:''}${w.note?`<p class="meta">${esc(w.note)}</p>`:''}</div>
+     <div class="acts">${V.has(vKey(c.lang,w.word))?'<span class="found">登録済み</span>':`<button class="mini" data-act="vAdd" data-id="${esc(c.id)}" data-k="${k}">＋単語帳</button>`}</div></li>`).join('')}</ul>
+     ${notIn>1?`<button class="linkbtn" data-act="vAddAll" data-id="${esc(c.id)}">まとめて単語帳に追加（${notIn}語）</button>`:''}`:''}
+   <p class="found" style="margin-top:6px">${LANG[c.lang]||''} ・ 添削 ${fmtStamp(c.created||c.updated)}</p></div>`}
 
 /* ---------- list rendering ---------- */
 function refresh(){
@@ -352,13 +482,12 @@ function refresh(){
   if(S.tab==='today'){
     const ev=D.events.filter(e=>e.date===td).sort(sortEv);
     const tk=open.filter(t=>(t.due&&t.due<=td)||(!t.due&&t.priority==='high')).sort(sortTasks);
-    const doneH=habits.filter(h=>h.log&&h.log[td]).length;
-    $('#sum').innerHTML=`<span>予定 <b>${ev.length}</b> 件</span><span>やること <b>${tk.length}</b> 件</span><span>習慣 <b>${doneH}</b> / ${habits.length}</span>${overdue?`<span style="color:var(--danger)">期限切れ <b style="color:var(--danger)">${overdue}</b> 件</span>`:''}`;
+    const doneH=habits.filter(h=>h.log&&h.log[td]).length, dueV=D.vocab.filter(isDue).length;
+    $('#sum').innerHTML=`<span>予定 <b>${ev.length}</b> 件</span><span>やること <b>${tk.length}</b> 件</span><span>習慣 <b>${doneH}</b> / ${habits.length}</span>${dueV?`<span>単語の復習 <b>${dueV}</b> 語</span>`:''}${overdue?`<span style="color:var(--danger)">期限切れ <b style="color:var(--danger)">${overdue}</b> 件</span>`:''}`;
     $('#lEv').innerHTML=loading?'':ev.length?ev.map(e=>evItem(e,false)).join(''):empty('今日の予定はありません。「予定」から追加できます。');
     $('#lTk').innerHTML=loading?'':tk.length?tk.map(taskItem).join(''):empty('急ぎのタスクはありません。上の欄に書くと今日まで期限のタスクになります。');
     $('#lHb').innerHTML=loading?'':habits.length?habits.map(habitToday).join(''):empty('まだ習慣がありません。「習慣」から追加すると、ここで毎日チェックできます。');
-  }
-  if(S.tab==='today'){const de=D.diary.find(x=>x.id===td);
+    const de=D.diary.find(x=>x.id===td);
     $('#tDiary').innerHTML=loading?'':de?`<button class="dprev" data-act="dOpen" data-d="${td}"><span>${esc(snip(de.text,120))}</span><small>続きを書く</small></button>`
       :`<button class="dprev empty-d" data-act="dOpen" data-d="${td}"><span>今日あったこと、感じたことを書き残しておきましょう。</span><small>日記を書く</small></button>`;
   }
@@ -366,14 +495,17 @@ function refresh(){
     const ta=$('#dText');
     if(ta&&!dDirty&&(document.activeElement!==ta||!ta.value)){const e=D.diary.find(x=>x.id===S.dDate),v=e?e.text||'':''; if(ta.value!==v){ta.value=v;dCount()}}
     const L=D.diary.filter(x=>x.text).sort((a,b)=>b.id.localeCompare(a.id)).slice(0,60);
-    $('#lDiary').innerHTML=loading?'':L.length?L.map(e=>`<li><button class="dprev ${e.id===S.dDate?'cur':''}" data-act="dOpen" data-d="${esc(e.id)}"><b>${fmtLong(e.id)}</b><span>${esc(snip(e.text,80))}</span></button></li>`).join('')
+    $('#lDiary').innerHTML=loading?'':L.length?L.map(e=>{const n=D.checks.filter(c=>c.date===e.id).length;
+      return `<li><button class="dprev ${e.id===S.dDate?'cur':''}" data-act="dOpen" data-d="${esc(e.id)}"><b>${fmtLong(e.id)}${n?` ・ 添削${n}件`:''}</b><span>${esc(snip(e.text,80))}</span></button></li>`}).join('')
       :empty('書いた日記がここに新しい順に並びます。');
+    renderAI();
   }
+  if(S.tab==='learn') renderLearn();
   if(S.tab==='search'){
-    const T=terms(),kinds=[['all','すべて'],['tasks','タスク'],['events','予定'],['diary','日記'],['memo','メモ'],['habits','習慣']];
+    const T=terms(),kinds=[['all','すべて'],['tasks','タスク'],['events','予定'],['diary','日記'],['memo','メモ'],['vocab','単語'],['checks','添削'],['habits','習慣']];
     $('#sChips').innerHTML=kinds.map(([k,l])=>`<button class="chip" data-act="sKind" data-v="${k}" aria-pressed="${S.sKind===k}">${l}</button>`).join('');
     const out=$('#sRes');
-    if(!T.length) out.innerHTML=empty('タスク・予定・日記・習慣の中から探します。スペースで区切って複数の言葉を入れると、すべてを含むものに絞り込みます。');
+    if(!T.length) out.innerHTML=empty('タスク・予定・日記・メモ・単語帳・添削・習慣の中から探します。スペースで区切って複数の言葉を入れると、すべてを含むものに絞り込みます。');
     else{
       const want=k=>S.sKind==='all'||S.sKind===k, g=[];
       if(want('tasks')){const L=D.tasks.filter(t=>hit([t.title,t.category],T)).sort(sortTasks);
@@ -382,18 +514,22 @@ function refresh(){
         if(L.length) g.push(['予定',L.map(e=>`<li class="item"><div class="body"><p class="ttl">${hl(e.title,T)}</p><p class="meta"><span class="due">${fmtShort(e.date)}${e.start?' '+e.start:' 終日'}</span>${e.place?`<span>${hl(e.place,T)}</span>`:''}${e.memo?`<span>${hl(e.memo,T)}</span>`:''}</p></div><div class="acts"><button class="mini" data-act="openEvent" data-id="${esc(e.id)}">開く</button></div></li>`)])}
       if(want('diary')){const L=D.diary.filter(x=>x.text&&hit([x.text],T)).sort((a,b)=>b.id.localeCompare(a.id));
         if(L.length) g.push(['日記',L.map(e=>`<li><button class="dprev" data-act="dOpen" data-d="${esc(e.id)}"><b>${fmtLong(e.id)}</b><span>${hl(around(e.text,T,110),T)}</span></button></li>`)])}
-      if(want('habits')){const L=D.habits.filter(h=>hit([h.name],T));
-        if(L.length) g.push(['習慣',L.map(h=>`<li class="item"><div class="body"><p class="ttl">${hl(h.name,T)}</p><p class="meta">${streak(h.log)}日連続</p></div><div class="acts"><button class="mini" data-act="openHabits">開く</button></div></li>`)])}
       if(want('memo')){const L=D.memos.filter(m=>hit([m.title,m.body],T)).sort((a,b)=>(b.updated||0)-(a.updated||0));
         if(L.length) g.push(['メモ',L.map(m=>`<li><button class="dprev" data-act="mOpen" data-id="${esc(m.id)}"><b class="mt">${m.title&&m.title.trim()?hl(m.title,T):'（無題）'}</b>${m.body?`<span>${hl(around(m.body,T,110),T)}</span>`:''}</button></li>`)])}
+      if(want('vocab')){const L=D.vocab.filter(v=>hit([v.word,v.meaning,v.example,v.exampleJa,v.note],T)).sort((a,b)=>(b.created||0)-(a.created||0));
+        if(L.length) g.push(['単語',L.map(v=>vocabItem(v,T))])}
+      if(want('checks')){const L=D.checks.filter(c=>hit([c.corrected,c.natural,c.comment,...(c.issues||[]).flatMap(i=>[i.wrong,i.right,i.type,i.explanation])],T)).sort((a,b)=>(b.created||0)-(a.created||0));
+        if(L.length) g.push(['添削',L.map(c=>`<li><button class="dprev" data-act="chkOpen" data-id="${esc(c.id)}"><b>${c.date?fmtLong(c.date):''} ・ ${LANG[c.lang]||''}</b><span>${hl(around([c.corrected,...(c.issues||[]).map(i=>i.wrong+' → '+i.right+' '+(i.explanation||''))].join(' '),T,110),T)}</span></button></li>`)])}
+      if(want('habits')){const L=D.habits.filter(h=>hit([h.name],T));
+        if(L.length) g.push(['習慣',L.map(h=>`<li class="item"><div class="body"><p class="ttl">${hl(h.name,T)}</p><p class="meta">${streak(h.log)}日連続</p></div><div class="acts"><button class="mini" data-act="openHabits">開く</button></div></li>`)])}
       const n=g.reduce((s,x)=>s+x[1].length,0);
       out.innerHTML=n?`<p class="found">${n}件見つかりました</p>`+g.map(([name,items])=>`<div class="evday"><h3>${name}（${items.length}件）</h3><ul class="list">${items.join('')}</ul></div>`).join('')
         :empty(`「${esc(S.q.trim())}」に一致するものはありません。言葉を短くするか、別の言い方でお試しください。`);
     }
   }
   if(S.tab==='memo'){
-    if(S.memoId){const t=$('#mTitle'),b=$('#mBody'),m=D.memos.find(x=>x.id===S.memoId);
-      if(m&&t&&!mDirty&&document.activeElement!==t&&document.activeElement!==b){ if(t.value!==(m.title||''))t.value=m.title||''; if(b.value!==(m.body||''))b.value=m.body||'' }}
+    if(S.memoId){const t=$('#mTitle'),bd=$('#mBody'),m=D.memos.find(x=>x.id===S.memoId);
+      if(m&&t&&!mDirty&&document.activeElement!==t&&document.activeElement!==bd){ if(t.value!==(m.title||''))t.value=m.title||''; if(bd.value!==(m.body||''))bd.value=m.body||'' }}
     const L=[...D.memos].sort((a,b)=>(b.updated||0)-(a.updated||0));
     $('#lMemo').innerHTML=loading?'':L.length?L.map(m=>`<li><button class="dprev" data-act="mOpen" data-id="${esc(m.id)}"><b class="mt">${esc(m.title&&m.title.trim()?m.title:'（無題）')}</b>${m.body?`<span>${esc(snip(m.body,90))}</span>`:''}<small class="mu">${fmtStamp(m.updated)}</small></button></li>`).join('')
       :empty('まだメモはありません。「新しいメモ」から、思いついたことや覚えておきたいことを書き留められます。');
@@ -430,13 +566,117 @@ function refresh(){
   }
 }
 
+/* ---------- diary: AI check panel ---------- */
+let SAMPLE; // undefined = still checking, null = not available here
+use('sample').then(s=>{SAMPLE=s||null; if(S.tab==='diary') renderAI()});
+function curLang(){ if(S.lang) return S.lang; const ta=$('#dText'); return detectLang(ta?ta.value:'')||'ru' }
+function renderAI(){
+  const box=$('#aiOut'); if(!box) return;
+  const lang=curLang(), running=S.ai&&S.ai.date===S.dDate;
+  $('#aiLang').innerHTML=LANGS.map(l=>`<button class="chip" data-act="aiLang" data-v="${l}" aria-pressed="${lang===l}">${LANG[l]}</button>`).join('');
+  const run=$('#aiRun'), stop=$('#aiStop'), msg=$('#aiMsg');
+  run.hidden=!SAMPLE||!!running; stop.hidden=!running; run.disabled=!!S.ai;
+  msg.textContent=running?'AIが添削しています…（数十秒かかることがあります）':SAMPLE===null?'AI添削は Claude 版で使えます。ここでは添削結果の確認と単語の練習ができます。':SAMPLE===undefined?'':'';
+  if(running){ box.innerHTML=''; return }
+  const list=Store.data.checks.filter(c=>c.date===S.dDate&&c.lang===lang).sort((a,b)=>(b.created||0)-(a.created||0));
+  const others=Store.data.checks.filter(c=>c.date===S.dDate&&c.lang!==lang);
+  box.innerHTML=list.length?checkHtml(list[0])+(list.length>1?`<p class="found" style="margin-top:8px">この日の${LANG[lang]}の添削は${list.length}回あります（最新を表示）。すべて「語学」タブとExcelに残っています。</p>`:'')
+    :(others.length?`<p class="found" style="margin-top:8px">この日は${[...new Set(others.map(c=>LANG[c.lang]))].join('・')}の添削があります。上の言語を切り替えると表示されます。</p>`:'');
+}
+const TYPES={ru:'格変化, 動詞のアスペクト, 動詞の活用, 性・数の一致, 前置詞, 語順, 綴り, 語彙の選択, 句読点, その他',
+  es:'動詞の活用, 時制, 接続法, ser/estar, 冠詞, 性・数の一致, 前置詞, 語順, 綴り・アクセント, 語彙の選択, その他',
+  en:'時制, 冠詞, 前置詞, 主語と動詞の一致, 単数・複数, 語順, 綴り, 語彙の選択, 句読点, その他'};
+function aiPrompt(lang,text){const L=LANG[lang];
+  return `あなたは、日本語を母語とする学習者を指導する${L}の先生です。以下は学習者が${L}で書いた日記です。日本語など他の言語の部分が混ざっていることがあります。
+
+${L}で書かれた部分だけを添削してください。
+- 文法・語法・綴り・句読点の誤りをすべて直し、内容と、くだけた日記の調子はできるだけ保ってください。
+- 説明・講評・意味は、すべて日本語で簡潔に書いてください。
+${lang==='ru'?'- 単語（words）の見出し語には強勢記号を付けてください（例: молоко́）。訂正文には付けないでください。\n':''}${lang==='es'?'- 名詞の見出し語には冠詞を付けて性がわかるようにしてください（例: la mesa）。\n':''}
+次の形のJSONだけを返してください。JSON以外の文章は書かないでください。
+{"corrected":"${L}の部分を訂正した全文（他言語の部分は含めない）","natural":"ネイティブならこう書くという、より自然な書き直し（訂正後と同じなら空文字）","comment":"全体への短い講評。日本語で1〜2文。よかった点にも触れる","issues":[{"wrong":"誤っていた語句（原文のまま）","right":"正しい語句","type":"分類（${TYPES[lang]} のどれか）","explanation":"なぜ違うのか、関係する規則を日本語で1〜2文"}],"words":[{"word":"見出し語（辞書形）","meaning":"日本語の意味","example":"その語を使った短い${L}の例文","exampleJa":"例文の和訳","note":"性・活用・格支配などの短い覚え書き（なければ空文字）"}]}
+
+issues は、誤りがなければ空の配列にしてください。words には、この日記で間違えた語、訂正で使った語、覚えると役立つ語を3〜8個選んでください。
+
+日記:
+"""
+${text.slice(0,6000)}
+"""`}
+const str=(v,n)=>typeof v==='string'?v.slice(0,n||4000):'';
+async function runCheck(){
+  if(!SAMPLE){toast('この画面ではAI添削を使えません');return}
+  if(!Store.ready()) return;
+  saveDiary();
+  const text=($('#dText').value||'').trim(); if(!text){toast('先に日記を書いてください');return}
+  const lang=curLang(), date=S.dDate, ctl=new AbortController();
+  S.ai={date,lang,ctl}; renderAI();
+  try{
+    const r=await SAMPLE.json(aiPrompt(lang,text),{signal:ctl.signal});
+    if(!r||typeof r!=='object'||typeof r.corrected!=='string') throw {code:'invalid_json'};
+    const issues=(Array.isArray(r.issues)?r.issues:[]).slice(0,60).filter(i=>i&&typeof i==='object').map(i=>({wrong:str(i.wrong,500),right:str(i.right,500),type:str(i.type,40)||'その他',explanation:str(i.explanation,800)}));
+    const words=(Array.isArray(r.words)?r.words:[]).slice(0,12).filter(w=>w&&typeof w==='object'&&str(w.word,200).trim()).map(w=>({word:str(w.word,200).trim(),meaning:str(w.meaning,300),example:str(w.example,500),exampleJa:str(w.exampleJa,500),note:str(w.note,300)}));
+    await Store.add('checks',{date,lang,original:text.slice(0,20000),corrected:str(r.corrected,20000),natural:str(r.natural,20000),comment:str(r.comment,1000),issues,words,created:Date.now()});
+    S.lang=lang; toast(issues.length?`添削しました（指摘 ${issues.length}件）`:'添削しました。間違いはありませんでした');
+  }catch(e){
+    const c=e&&e.code;
+    if(c!=='cancelled') toast(c==='not_granted'?'AIの使用が許可されませんでした':c==='rate_limited'?'混み合っています。少し時間をおいてお試しください':c==='invalid_json'?'添削結果を読み取れませんでした。もう一度お試しください':c==='session_expired'?'Claude に再ログインしてください':'添削できませんでした。もう一度お試しください',4500);
+    if(c==='not_granted'||c==='sampling_disabled'||c==='not_declared'||c==='capability_disabled'||c==='capability_removed') SAMPLE=null;
+  }finally{ S.ai=null; if(S.tab==='diary') renderAI() }
+}
+
+/* ---------- vocabulary & flashcards ---------- */
+async function addVocab(lang,w,source){
+  if(Store.data.vocab.some(v=>vKey(v.lang,v.word)===vKey(lang,w.word))) return false;
+  await Store.add('vocab',{lang,word:w.word,meaning:w.meaning||'',example:w.example||'',exampleJa:w.exampleJa||'',note:w.note||'',source:source||{},created:Date.now(),box:1,due:today(),reviews:0,correct:0});
+  return true }
+function renderLearn(){
+  const D=Store.data, L=S.lLang;
+  const counts=l=>D.vocab.filter(v=>l==='all'||v.lang===l).length;
+  $('#lLang').innerHTML=[['all','すべて'],...LANGS.map(l=>[l,LANG[l]])].map(([k,l])=>`<button class="chip" data-act="lLang" data-v="${k}" aria-pressed="${L===k}">${l}（${counts(k)}）</button>`).join('');
+  const V=D.vocab.filter(v=>L==='all'||v.lang===L).sort((a,b)=>(b.created||0)-(a.created||0));
+  const due=V.filter(isDue).length;
+  $('#vCount').textContent=`${V.length}語 ・ 今日の復習 ${due}語`;
+  const cb=$('#cardBtn'); cb.hidden=!!S.card||!V.length; cb.textContent=due?`カードで練習（${Math.min(due,20)}語）`:'カードで練習';
+  const vl=$('#vLang'); if(vl&&L!=='all'&&document.activeElement!==vl) vl.value=L;
+  renderCard();
+  $('#lVocab').innerHTML=Store.mode==='loading'?'':V.length?V.slice(0,300).map(v=>vocabItem(v)).join('')+(V.length>300?`<p class="found">ほか${V.length-300}語（検索で探せます）</p>`:'')
+    :empty('まだ単語がありません。日記の「AIで添削する」で出てきた単語を「＋単語帳」で追加するか、上の「単語を自分で追加する」から登録できます。');
+  const C=D.checks.filter(c=>L==='all'||c.lang===L).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.created||0)-(a.created||0));
+  $('#lChecks').innerHTML=Store.mode==='loading'?'':C.length?C.slice(0,100).map(c=>`<li><button class="dprev" data-act="chkOpen" data-id="${esc(c.id)}"><b>${c.date?fmtLong(c.date):''} ・ ${LANG[c.lang]||''} ・ 指摘${(c.issues||[]).length}件</b><span>${esc(snip(c.corrected,90))}</span></button></li>`).join('')
+    :empty('日記の画面で「AIで添削する」を使うと、ここに記録が残ります。');
+}
+function startCards(){
+  const V=Store.data.vocab.filter(v=>S.lLang==='all'||v.lang===S.lLang);
+  let q=V.filter(isDue); if(!q.length) q=[...V];
+  q.sort((a,b)=>(a.box||1)-(b.box||1)||(a.due||'').localeCompare(b.due||'')||Math.random()-.5);
+  q=q.slice(0,20); if(!q.length){toast('練習する単語がありません');return}
+  S.card={ids:q.map(v=>v.id),i:0,show:false,ok:0}; renderLearn(); window.scrollTo(0,0);
+}
+function renderCard(){
+  const box=$('#cardBox'); if(!box) return; const c=S.card;
+  if(!c){box.innerHTML='';return}
+  if(c.i>=c.ids.length){ box.innerHTML=`<div class="card"><p class="cword" style="font-size:22px">おつかれさまでした</p><p class="cmean">${c.ids.length}語中 ${c.ok}語「覚えた」</p><div class="cbtns"><button class="btn" data-act="cardStart">もう一度</button><button class="btn ghost" data-act="cardEnd">閉じる</button></div></div>`; return }
+  const v=Store.data.vocab.find(x=>x.id===c.ids[c.i]); if(!v){c.i++;return renderCard()}
+  box.innerHTML=`<div class="card"><p class="cinfo"><span><span class="lang">${LANG[v.lang]||''}</span> ${c.i+1} / ${c.ids.length}</span>${dots(v.box)}</p>
+   <p class="cword">${esc(v.word)}</p>
+   ${c.show?`<p class="cmean">${esc(v.meaning)}</p>${v.example?`<p class="cex">${esc(v.example)}${v.exampleJa?`<br>${esc(v.exampleJa)}`:''}</p>`:''}${v.note?`<p class="cex">${esc(v.note)}</p>`:''}
+     <div class="cbtns"><button class="btn ghost" data-act="cardNo">まだ</button><button class="btn" data-act="cardYes">覚えた</button></div>`
+   :`<div class="cbtns"><button class="btn" data-act="cardShow">答えを見る</button></div>`}
+   <div class="cbtns"><button class="linkbtn" data-act="cardEnd" style="margin-top:0">練習をやめる</button></div></div>`;
+}
+function grade(ok){const c=S.card; if(!c) return; const v=Store.data.vocab.find(x=>x.id===c.ids[c.i]);
+  if(v){ const box=ok?Math.min((v.box||1)+1,6):1;
+    Store.update('vocab',v.id,{box,due:addDays(today(),ok?BOX_DAYS[box]:0),reviews:(v.reviews||0)+1,correct:(v.correct||0)+(ok?1:0),lastReview:Date.now()}) }
+  if(ok) c.ok++; c.i++; c.show=false; renderLearn() }
+
 /* ---------- navigation ---------- */
 function header(){const d=new Date();
   $('#era').textContent=`令和${d.getFullYear()-2018}年 ・ ${d.getFullYear()}`;
   $('#dateHead').textContent=fmtLong(today());}
 function setTab(t,push){
   if(!VIEWS.includes(t)) t='today';
-  saveDiary(); saveMemo(); S.tab=t; view.innerHTML=shells[t]();
+  saveDiary(); saveMemo(); if(t!=='learn') S.card=null;
+  S.tab=t; view.innerHTML=shells[t]();
   if(t==='diary') loadDiary();
   if(t==='memo') loadMemo();
   if(t==='search'){const q=$('#sQ');q.value=S.q;setTimeout(()=>q.focus(),0)}
@@ -462,7 +702,7 @@ function startEditEvent(id){const e=Store.data.events.find(x=>x.id===id); if(!e)
   $('#eHead').textContent='予定を編集'; $('#eSubmit').textContent='保存'; $('#eCancel').hidden=false; $('#fEvent').classList.add('editing'); window.scrollTo(0,0); $('#eTitle').focus();}
 function endEditEvent(){S.editEvent=null;const f=$('#fEvent');if(!f)return;f.reset();$('#eDate').value=today();f.classList.remove('editing');$('#eHead').textContent='予定を追加';$('#eSubmit').textContent='追加';$('#eCancel').hidden=true}
 
-view.addEventListener('click',e=>{
+view.addEventListener('click',async e=>{
   const b=e.target.closest('[data-act]'); if(!b)return;
   const id=b.dataset.id, act=b.dataset.act;
   if(act==='toggleTask'){const t=Store.data.tasks.find(x=>x.id===id); if(t) Store.update('tasks',id,{done:!t.done,doneAt:t.done?0:Date.now()})}
@@ -481,6 +721,20 @@ view.addEventListener('click',e=>{
   else if(act==='openEvent'){const ev=Store.data.events.find(x=>x.id===id); if(ev&&ev.date<today())S.showPast=true; setTab('schedule',true); startEditEvent(id)}
   else if(act==='dPrev') openDiary(addDays(S.dDate,-1));
   else if(act==='dNext'){ if(S.dDate<today()) openDiary(addDays(S.dDate,1)) }
+  else if(act==='aiLang'){S.lang=b.dataset.v;renderAI()}
+  else if(act==='aiRun') runCheck();
+  else if(act==='aiStop'){ if(S.ai) S.ai.ctl.abort() }
+  else if(act==='vAdd'||act==='vAddAll'){const c=Store.data.checks.find(x=>x.id===id); if(!c)return;
+    const ws=act==='vAdd'?[c.words[+b.dataset.k]]:c.words; let n=0;
+    for(const w of ws) if(w&&await addVocab(c.lang,w,{date:c.date,checkId:c.id})) n++;
+    toast(n?`単語帳に${n}語追加しました`:'すでに登録されています'); }
+  else if(act==='chkOpen'){const c=Store.data.checks.find(x=>x.id===id); if(c){S.lang=c.lang; openDiary(c.date||today())}}
+  else if(act==='lLang'){S.lLang=b.dataset.v;S.card=null;renderLearn()}
+  else if(act==='cardStart') startCards();
+  else if(act==='cardShow'){ if(S.card){S.card.show=true;renderCard()} }
+  else if(act==='cardYes') grade(true);
+  else if(act==='cardNo') grade(false);
+  else if(act==='cardEnd'){S.card=null;renderLearn()}
   else if(act==='del'){
     if(b.dataset.armed){ if(S.editTask===id)endEditTask(); if(S.editEvent===id)endEditEvent();
       if(b.dataset.col==='memos'){clearTimeout(mTimer);mDirty=false;S.memoId=null;loadMemo()}
@@ -490,7 +744,7 @@ view.addEventListener('click',e=>{
   }
 });
 view.addEventListener('click',e=>{if(e.target.id==='tCancel')endEditTask(); if(e.target.id==='eCancel')endEditEvent()});
-view.addEventListener('submit',e=>{
+view.addEventListener('submit',async e=>{
   e.preventDefault(); const f=e.target;
   if(f.id==='fSearch'){$('#sQ').blur();return}
   if(f.id==='fQuick'){const v=$('#qTitle').value.trim(); if(!v)return; if(!Store.ready())return;
@@ -504,6 +758,9 @@ view.addEventListener('submit',e=>{
     if(o.end&&!o.start){toast('終了時刻を入れるときは開始時刻も入れてください');return}
     if(S.editEvent){Store.update('events',S.editEvent,o);toast('予定を保存しました')} else {Store.add('events',o);toast('予定を追加しました')}
     endEditEvent()}
+  if(f.id==='fVocab'){const w={word:$('#vWord').value.trim(),meaning:$('#vMean').value.trim(),example:$('#vEx').value.trim(),note:$('#vNote').value.trim()}; if(!w.word||!Store.ready())return;
+    const lang=$('#vLang').value; const ok=await addVocab(lang,w,{manual:true});
+    toast(ok?'単語帳に追加しました':'すでに登録されています'); if(ok){ f.reset(); $('#vLang').value=lang; $('#vWord').focus() } }
 });
 
 /* ---------- diary ---------- */
@@ -526,7 +783,7 @@ async function saveDiary(){clearTimeout(dTimer); if(!dDirty)return;
 function openDiary(d){saveDiary(); S.dDate=d;
   if(S.tab!=='diary') setTab('diary',true); else {loadDiary();refresh();window.scrollTo(0,0)}}
 view.addEventListener('input',e=>{if(e.target.id==='dText'){dDirty=true;setSave('入力中…');dCount();clearTimeout(dTimer);dTimer=setTimeout(saveDiary,1200)}});
-view.addEventListener('focusout',e=>{if(e.target.id==='dText')saveDiary()});
+view.addEventListener('focusout',e=>{if(e.target.id==='dText'){saveDiary(); if(!S.lang) renderAI()}});
 
 /* ---------- memos ---------- */
 let mDirty=false,mTimer=null;
@@ -553,7 +810,6 @@ view.addEventListener('input',e=>{if(e.target.id==='mTitle'||e.target.id==='mBod
 view.addEventListener('focusout',e=>{if(e.target.id==='mTitle'||e.target.id==='mBody')saveMemo()});
 
 /* ---------- search ---------- */
-const norm=s=>String(s||'').normalize('NFKC').toLowerCase();
 const reEsc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 function terms(){return norm(S.q).split(/\s+/).filter(Boolean)}
 function hit(fields,T){const h=norm(fields.filter(Boolean).join('\n'));return T.every(t=>h.includes(t))}
@@ -568,25 +824,37 @@ view.addEventListener('input',e=>{if(e.target.id==='sQ'){S.q=e.target.value;refr
 $('#btnSearch').addEventListener('click',()=>{S.editTask=S.editEvent=null;setTab(S.tab==='search'?'today':'search',true)});
 
 /* ---------- export to Excel ---------- */
-async function exportXlsx(){
-  if(!Store.ready())return;
-  if(typeof XLSX==='undefined'){toast('書き出し機能を読み込めませんでした。ページを開き直してください');return}
-  saveDiary(); saveMemo();
+let DL=null; use('downloads').then(d=>{DL=d});
+async function saveFile(buf,name){
+  const type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', blob=new Blob([buf],{type});
+  if(DL){ try{ const r=await DL.save({filename:name,data:blob}); return r&&r.status==='saved' }
+    catch(e){ if(e&&e.code==='declined') return false; toast(e&&e.code==='rate_limited'?'少し待ってからもう一度どうぞ':'書き出せませんでした'); return false } }
+  if(window.claude){ toast('この画面ではファイルを保存できません。claude.ai で開いてお試しください'); return false }
+  let file=null; try{ file=new File([blob],name,{type}) }catch(e){}
+  const touch=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+  if(touch&&file&&navigator.canShare&&navigator.canShare({files:[file]})){
+    try{ await navigator.share({files:[file]}); return true }
+    catch(e){ if(!(e&&e.name==='AbortError')) toast('書き出せませんでした。もう一度お試しください'); return false } }
+  const url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),5000);
+  return true }
+function buildWorkbook(){
   const D=Store.data, td=today(), wd=s=>s?WD[parse(s).getDay()]:'', dt=n=>n?new Date(n).toLocaleString('ja-JP'):'';
   const wb=XLSX.utils.book_new();
   const add=(name,rows,widths)=>{const ws=XLSX.utils.aoa_to_sheet(rows); ws['!cols']=widths.map(w=>({wch:w}));
     if(rows.length>1) ws['!autofilter']={ref:XLSX.utils.encode_range({s:{r:0,c:0},e:{r:rows.length-1,c:rows[0].length-1}})};
     XLSX.utils.book_append_sheet(wb,ws,name)};
+  const cut=s=>String(s||'').slice(0,32000);
   {
     const ymdOf=n=>n?ymd(new Date(n)):'', hm=n=>n?`${pad(new Date(n).getHours())}:${pad(new Date(n).getMinutes())}`:'';
     const R=[];
     D.events.forEach(e=>R.push([e.date,'予定',e.start||'終日',e.title||'',[e.end?'〜'+e.end:'',e.memo||''].filter(Boolean).join(' '),e.place||'','']));
     D.tasks.forEach(t=>R.push([t.due||ymdOf(t.created),'タスク','',t.title||'','優先度 '+PRI[t.priority||'mid']+(t.due?'':'（期限なし・登録日）'),t.category||'',t.done?'完了':'未完了']));
-    D.diary.filter(x=>x.text).forEach(e=>R.push([e.id,'日記','',snip(e.text,30),e.text.slice(0,32000),'','']));
-    D.memos.forEach(m=>R.push([ymdOf(m.created),'メモ',hm(m.created),m.title||'（無題）',(m.body||'').slice(0,32000),'','更新 '+dt(m.updated)]));
+    D.diary.filter(x=>x.text).forEach(e=>R.push([e.id,'日記','',snip(e.text,30),cut(e.text),'','']));
+    D.checks.forEach(c=>R.push([c.date||ymdOf(c.created),'添削',hm(c.created),`${LANG[c.lang]||''}・指摘${(c.issues||[]).length}件`,cut(c.corrected),LANG[c.lang]||'','']));
+    D.memos.forEach(m=>R.push([ymdOf(m.created),'メモ',hm(m.created),m.title||'（無題）',cut(m.body),'','更新 '+dt(m.updated)]));
     const byDay={}; D.habits.forEach(h=>Object.keys(h.log||{}).forEach(d=>{if(h.log[d])(byDay[d]=byDay[d]||[]).push(h.name)}));
     Object.keys(byDay).forEach(d=>R.push([d,'習慣','','達成した習慣（'+byDay[d].length+'件）',byDay[d].join('、'),'','']));
-    const ord={'予定':0,'タスク':1,'習慣':2,'日記':3,'メモ':4};
+    const ord={'予定':0,'タスク':1,'習慣':2,'日記':3,'添削':4,'メモ':5};
     R.sort((a,b)=>a[0]!==b[0]?(a[0]<b[0]?-1:1):ord[a[1]]!==ord[b[1]]?ord[a[1]]-ord[b[1]]:String(a[2]).localeCompare(String(b[2])));
     add('すべて（時系列）',[['日付','曜日','種類','時刻','内容','詳細・本文','分類・場所','状態'],
       ...R.map(r=>[r[0],wd(r[0]),r[1],r[2],r[3],r[4],r[5],r[6]])],[12,6,8,8,32,60,16,14]);
@@ -596,66 +864,72 @@ async function exportXlsx(){
   add('予定',[['日付','曜日','開始','終了','件名','場所','メモ'],
     ...[...D.events].sort(sortEv).map(e=>[e.date,wd(e.date),e.start||'終日',e.end||'',e.title||'',e.place||'',e.memo||''])],[12,6,8,8,36,20,36]);
   add('日記',[['日付','曜日','本文','文字数','最終更新'],
-    ...D.diary.filter(x=>x.text).sort((a,b)=>a.id.localeCompare(b.id)).map(e=>[e.id,wd(e.id),e.text.slice(0,32000),e.text.length,dt(e.updated)])],[12,6,80,8,20]);
+    ...D.diary.filter(x=>x.text).sort((a,b)=>a.id.localeCompare(b.id)).map(e=>[e.id,wd(e.id),cut(e.text),e.text.length,dt(e.updated)])],[12,6,80,8,20]);
+  const C=[...D.checks].sort((a,b)=>(a.date||'').localeCompare(b.date||'')||(a.created||0)-(b.created||0));
+  add('添削',[['日付','曜日','言語','元の文','訂正後','より自然な言い方','講評','指摘数','添削日時'],
+    ...C.map(c=>[c.date||'',wd(c.date),LANG[c.lang]||'',cut(c.original),cut(c.corrected),cut(c.natural),c.comment||'',(c.issues||[]).length,dt(c.created)])],[12,6,10,50,50,50,40,8,20]);
+  add('指摘事項',[['日付','言語','分類','間違い','正しい形','説明'],
+    ...C.flatMap(c=>(c.issues||[]).map(i=>[c.date||'',LANG[c.lang]||'',i.type||'',i.wrong||'',i.right||'',i.explanation||'']))],[12,10,16,30,30,60]);
+  add('単語帳',[['言語','単語','意味','例文','例文の訳','メモ','出典の日付','習熟度（1〜6）','練習回数','正解数','次の復習日','登録日'],
+    ...[...D.vocab].sort((a,b)=>(a.lang||'').localeCompare(b.lang||'')||(a.created||0)-(b.created||0)).map(v=>[LANG[v.lang]||'',v.word||'',v.meaning||'',v.example||'',v.exampleJa||'',v.note||'',(v.source&&v.source.date)||'',v.box||1,v.reviews||0,v.correct||0,v.due||'',dt(v.created)])],[10,20,24,40,30,24,12,12,8,8,12,20]);
   const H=[...D.habits].sort((a,b)=>(a.created||'').localeCompare(b.created||''));
   add('メモ',[['タイトル','本文','作成日時','更新日時'],
-    ...[...D.memos].sort((a,b)=>(b.updated||0)-(a.updated||0)).map(m=>[m.title||'',(m.body||'').slice(0,32000),dt(m.created),dt(m.updated)])],[30,80,20,20]);
+    ...[...D.memos].sort((a,b)=>(b.updated||0)-(a.updated||0)).map(m=>[m.title||'',cut(m.body),dt(m.created),dt(m.updated)])],[30,80,20,20]);
   add('習慣',[['習慣','開始日','連続日数','達成率（直近30日）','記録した日数'],
     ...H.map(h=>{const r=rate(h);return [h.name,h.created||'',streak(h.log),r.pct+'%',Object.values(h.log||{}).filter(Boolean).length]})],[30,12,10,18,12]);
   let first=td; H.forEach(h=>{ if(h.created&&h.created<first)first=h.created; Object.keys(h.log||{}).forEach(d=>{if(h.log[d]&&d<first)first=d}) });
   const rows=[['日付','曜日',...H.map(h=>h.name)]];
   for(let d=td,i=0;d>=first&&i<3660;d=addDays(d,-1),i++) rows.push([d,wd(d),...H.map(h=>h.log&&h.log[d]?'○':'')]);
   add('習慣の記録',rows,[12,6,...H.map(()=>14)]);
-  const payload=JSON.stringify({app:'hibi-techou',v:1,exported:Date.now(),data:Object.fromEntries([...COLS,'deleted'].map(k=>[k,D[k]||(k==='deleted'?{}:[])]))});
+  const payload=JSON.stringify({app:'hibi-techou',v:2,exported:Date.now(),data:Object.fromEntries([...COLS.map(c=>[c,D[c]||[]]),['deleted',D.deleted||{}]])});
   const sys=[['このシートはアプリへの読み込み用です。編集・削除しないでください。']]; for(let i=0;i<payload.length;i+=30000) sys.push([payload.slice(i,i+30000)]);
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sys),'_system');
   wb.Workbook={Sheets:wb.SheetNames.map(n=>({Hidden:n==='_system'?1:0}))};
-  const buf=XLSX.write(wb,{bookType:'xlsx',type:'array'});
-  const name=`日々の手帳_${td}_${pad(new Date().getHours())}${pad(new Date().getMinutes())}.xlsx`, type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-  const blob=new Blob([buf],{type});
-  let file=null; try{ file=new File([blob],name,{type}) }catch(e){}
-  const touch=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
-  if(touch&&file&&navigator.canShare&&navigator.canShare({files:[file]})){
-    try{ await navigator.share({files:[file]}) }
-    catch(e){ if(e&&e.name==='AbortError') return; toast('書き出せませんでした。もう一度お試しください'); return }
-  }else{
-    const url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),5000);
-  }
-  Store.meta.lastExport=Date.now(); Store.saveMeta(); status(); toast('書き出しました');
+  return XLSX.write(wb,{bookType:'xlsx',type:'array'});
 }
-/* ---------- import from Excel ---------- */
+async function exportXlsx(){
+  if(!Store.ready())return;
+  if(typeof XLSX==='undefined'){toast('書き出し機能を読み込めませんでした。開き直してください');return}
+  saveDiary(); saveMemo();
+  const n=new Date(), name=`日々の手帳_${today()}_${pad(n.getHours())}${pad(n.getMinutes())}.xlsx`;
+  if(await saveFile(buildWorkbook(),name)){ Store.meta.lastExport=Date.now(); Store.saveMeta(); status(); toast('書き出しました') }
+}
+$('#btnExport').addEventListener('click',exportXlsx);
+
+/* ---------- import from Excel (merge by id; newer edit wins; deletions carried) ---------- */
 function mergeData(inc){
-  const D=Store.data, res={added:0,updated:0,removed:0};
-  const tombIn=inc.deleted||{};
+  const D=Store.data, tombIn=inc.deleted||{}, deleted={}, changes=[], res={added:0,updated:0,removed:0};
   COLS.forEach(c=>{
-    const tombs=Object.assign({},D.deleted[c]||{});
-    Object.entries(tombIn[c]||{}).forEach(([id,ts])=>{ if(!tombs[id]||ts>tombs[id]) tombs[id]=ts });
-    const map=new Map(D[c].map(x=>[x.id,x])), before=new Map(map);
-    (inc[c]||[]).forEach(it=>{ if(!it||!it.id) return; const cur=map.get(it.id);
+    const tombs=Object.assign({},(D.deleted||{})[c]||{});
+    Object.entries(tombIn[c]||{}).forEach(([id,ts])=>{ ts=+ts||0; if(!tombs[id]||ts>tombs[id]) tombs[id]=ts });
+    const map=new Map((D[c]||[]).map(x=>[x.id,x])), before=new Map(map);
+    (Array.isArray(inc[c])?inc[c]:[]).forEach(it=>{ if(!it||typeof it!=='object'||!okId(it.id)) return; const cur=map.get(it.id);
       if(!cur||(it.updated||0)>(cur.updated||0)) map.set(it.id,it) });
     for(const [id,it] of map) if(tombs[id]!=null&&tombs[id]>=(it.updated||0)) map.delete(id);
-    for(const [id,it] of map){ if(!before.has(id)) res.added++; else if(before.get(id)!==it) res.updated++ }
-    for(const id of before.keys()) if(!map.has(id)) res.removed++;
-    D[c]=[...map.values()]; D.deleted[c]=tombs;
+    for(const [id,it] of map){ if(!before.has(id)){res.added++;changes.push({c,id,item:it})} else if(before.get(id)!==it){res.updated++;changes.push({c,id,item:it})} }
+    for(const id of before.keys()) if(!map.has(id)){res.removed++;changes.push({c,id,item:null})}
+    deleted[c]=tombs;
   });
-  return res;
+  return {changes,deleted,res};
 }
 async function importFile(f){
   if(!Store.ready()) return;
-  if(typeof XLSX==='undefined'){toast('読み込み機能を準備できませんでした。アプリを開き直してください');return}
+  if(typeof XLSX==='undefined'){toast('読み込み機能を準備できませんでした。開き直してください');return}
   saveDiary(); saveMemo();
   let wb; try{ wb=XLSX.read(await f.arrayBuffer(),{type:'array'}) }catch(e){ toast('Excelファイルとして開けませんでした',4000); return }
   const ws=wb.Sheets['_system'];
   if(!ws){ toast('このファイルには読み込み用のデータがありません。「日々の手帳」で書き出したファイルを選んでください',5000); return }
   let p; try{ const rows=XLSX.utils.sheet_to_json(ws,{header:1}); p=JSON.parse(rows.slice(1).map(r=>r&&r[0]?String(r[0]):'').join('')) }catch(e){ p=null }
   if(!p||p.app!=='hibi-techou'||!p.data){ toast('読み込み用のデータが壊れています。書き出し直したファイルでお試しください',5000); return }
-  const r=mergeData(p.data);
-  Store.saveLocal(); S.memoId=null; setTab(S.tab==='search'?'today':S.tab);
+  const m=mergeData(p.data);
+  if(m.changes.length) toast('読み込み中…',60000);
+  const ok=await Store.apply(m); if(!ok) return;
+  S.memoId=null; S.card=null; setTab(S.tab==='search'?'today':S.tab);
+  const r=m.res;
   toast(r.added||r.updated||r.removed?`読み込みました：追加 ${r.added}件・更新 ${r.updated}件・削除 ${r.removed}件`:'読み込みました（変更はありませんでした）',5000);
 }
 $('#btnImport').addEventListener('click',()=>$('#fileIn').click());
 $('#fileIn').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0]; e.target.value=''; if(f) importFile(f)});
-$('#btnExport').addEventListener('click',exportXlsx);
 
 header(); setTab(location.hash.slice(1)); Store.init();
 if('serviceWorker' in navigator && location.protocol==='https:'){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})) }
